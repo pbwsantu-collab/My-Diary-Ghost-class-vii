@@ -13,7 +13,7 @@
     background: linear-gradient(160deg, #e8f4f8 0%, #f5f0e6 100%);
     color: #1a1a1a;
     line-height: 1.65;
-    padding: 12px;
+    padding: 8px;
     min-height: 100vh;
   }
   .container {
@@ -29,68 +29,69 @@
   header {
     background: linear-gradient(135deg, #1a5276, #154360);
     color: white;
-    padding: 20px 24px;
+    padding: 16px 20px;
     text-align: center;
   }
-  header h1 { font-size: 1.7rem; margin-bottom: 4px; }
-  header p { opacity: 0.9; font-size: 0.9rem; }
+  header h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  header p { opacity: 0.9; font-size: 0.85rem; }
 
   .lesson-tabs {
     display: flex;
     justify-content: center;
     background: #0e2e43;
-    padding: 10px;
-    gap: 12px;
+    padding: 8px;
+    gap: 8px;
   }
   .lesson-tabs button {
-    padding: 10px 22px;
+    padding: 8px 16px;
     border: none;
     background: rgba(255,255,255,0.1);
     color: #aed6f1;
     font-weight: 600;
+    font-size: 0.85rem;
     cursor: pointer;
     border-radius: 30px;
     transition: all 0.25s ease;
   }
-  .lesson-tabs button:hover { background: rgba(255,255,255,0.25); color: #fff; }
   .lesson-tabs button.active { background: #1a5276; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
   .menu {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    padding: 12px;
+    gap: 8px;
+    padding: 10px;
     background: #eaf2f8;
     border-bottom: 1px solid #d0dce8;
     flex-wrap: wrap;
   }
   .menu button {
-    padding: 8px 18px;
+    padding: 6px 14px;
     border: 2px solid #1a5276;
     border-radius: 50px;
     background: white;
     color: #1a5276;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.25s ease;
   }
-  .menu button:hover, .menu button.active { background: #1a5276; color: white; }
+  .menu button.active { background: #1a5276; color: white; }
 
   .controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
     align-items: center;
-    padding: 12px 16px;
+    padding: 10px;
     background: #f0f4f8;
     border-bottom: 1px solid #dce4ec;
   }
   button.action-btn {
-    padding: 10px 22px;
+    padding: 8px 16px;
     border: none;
     border-radius: 50px;
-    font-size: 0.92rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.25s ease;
@@ -102,52 +103,52 @@
   .speed-box {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: #fff;
     border: 1.5px solid #1a5276;
-    padding: 6px 14px;
+    padding: 4px 10px;
     border-radius: 50px;
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     color: #1a5276;
     font-weight: 600;
   }
-  .speed-box input[type=range] { width: 80px; accent-color: #1a5276; cursor: pointer; }
+  .speed-box input[type=range] { width: 65px; accent-color: #1a5276; cursor: pointer; }
 
   .status-bar {
     text-align: center;
-    padding: 8px 14px;
-    font-size: 0.86rem;
+    padding: 6px 12px;
+    font-size: 0.8rem;
     background: #e8f0f7;
     color: #1a5276;
     font-weight: 500;
   }
   
-  .content { padding: 16px 28px 40px; position: relative; }
+  .content { padding: 12px 16px 30px; position: relative; }
   .section-block {
     background: #f8fafc;
     border-left: 4px solid #3498db;
-    padding: 14px 18px;
-    margin-bottom: 20px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
     border-radius: 0 8px 8px 0;
   }
-  h2 { color: #1a5276; margin: 18px 0 12px; font-size: 1.35rem; border-bottom: 2px solid #eaf2f8; padding-bottom: 6px; }
+  h2 { color: #1a5276; margin: 12px 0 8px; font-size: 1.2rem; border-bottom: 2px solid #eaf2f8; padding-bottom: 4px; }
   
-  .story { font-size: 1.1rem; text-align: justify; line-height: 2.2; position: relative; }
+  .story { font-size: 1.05rem; text-align: justify; line-height: 2.1; position: relative; }
   
   .sentence {
     display: inline;
-    padding: 3px 6px;
-    border-radius: 6px;
-    transition: all 0.25s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
     position: relative;
     cursor: pointer;
   }
   .sentence:hover { background: #fef9e7; }
-  .sentence.active { background: #d5f5e3; border-bottom: 3px solid #27ae60; font-weight: 500; }
+  .sentence.active { background: #d5f5e3; border-bottom: 2px solid #27ae60; font-weight: 500; }
   
   .word {
     display: inline;
-    padding: 1px 2px;
+    padding: 0 1px;
     border-radius: 3px;
     cursor: pointer;
     transition: 0.15s;
@@ -155,24 +156,25 @@
   .word.has-meaning { border-bottom: 1.5px dotted #2980b9; }
   .word:hover { background: #e3f2fd; color: #1a5276; font-weight: 600; }
 
-  /* Floating Sentence Bengali Tooltip */
+  /* Floating Sentence Bengali Tooltip - Mobile Optimized */
   .sentence-bn-tooltip {
     position: absolute;
     z-index: 800;
     background: #112d42;
     color: #ffd54f;
-    padding: 8px 14px;
-    border-radius: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
     font-family: 'Noto Sans Bengali', sans-serif;
-    font-size: 0.98rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    line-height: 1.45;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
     border: 1.5px solid #f39c12;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
     opacity: 0;
-    transform: translateY(6px);
-    max-width: 90%;
+    transform: translateY(2px);
+    max-width: 96%;
   }
   .sentence-bn-tooltip.visible {
     opacity: 1;
@@ -180,40 +182,37 @@
   }
 
   /* Floating Control Menu */
-  .floating-menu-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
+  .floating-menu-container { position: fixed; bottom: 16px; right: 16px; z-index: 9999; }
   .floating-btn {
-    width: 58px; height: 58px; border-radius: 50%;
+    width: 48px; height: 48px; border-radius: 50%;
     background: linear-gradient(135deg, #1a5276, #113850);
-    color: #fff; border: 2px solid #fff; font-size: 1.4rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3); cursor: pointer;
+    color: #fff; border: 2px solid #fff; font-size: 1.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3); cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    transition: all 0.3s;
   }
-  .floating-btn:hover { transform: scale(1.1) rotate(90deg); background: #27ae60; }
   .floating-dropdown {
-    position: absolute; bottom: 70px; right: 0; background: #fff;
-    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    width: 220px; padding: 10px 0; display: none; flex-direction: column;
+    position: absolute; bottom: 58px; right: 0; background: #fff;
+    border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    width: 200px; padding: 8px 0; display: none; flex-direction: column;
   }
   .floating-dropdown.show { display: flex; }
   .floating-dropdown button {
-    padding: 10px 18px; text-align: left; background: none; border: none;
-    color: #2c3e50; font-weight: 500; cursor: pointer;
+    padding: 8px 14px; text-align: left; background: none; border: none;
+    color: #2c3e50; font-size: 0.85rem; font-weight: 500; cursor: pointer;
   }
-  .floating-dropdown button:hover { background: #eaf2f8; color: #1a5276; }
 
   /* Word Dictionary Popup */
   #popup {
     position: absolute; z-index: 1000; background: #fff8e1;
-    border: 2px solid #ffc107; border-radius: 14px; padding: 14px 16px;
-    max-width: 300px; box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    border: 2px solid #ffc107; border-radius: 12px; padding: 10px 12px;
+    max-width: 280px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
     font-family: 'Noto Sans Bengali', sans-serif; display: none;
   }
   #popup.show { display: block; }
-  #popup .en { font-family: 'Poppins', sans-serif; font-size: 1rem; color: #1a5276; font-weight: 600; }
-  #popup .bn { font-size: 1.15rem; color: #111; margin: 6px 0 10px; font-weight: 600; }
-  #popup .speak-btn { background: #27ae60; color: white; border: none; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; }
-  #popup .close-btn { position: absolute; top: 6px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+  #popup .en { font-family: 'Poppins', sans-serif; font-size: 0.95rem; color: #1a5276; font-weight: 600; }
+  #popup .bn { font-size: 1rem; color: #111; margin: 4px 0 8px; font-weight: 600; }
+  #popup .speak-btn { background: #27ae60; color: white; border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; font-weight: 600; }
+  #popup .close-btn { position: absolute; top: 4px; right: 8px; background: none; border: none; font-size: 1.1rem; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -221,7 +220,7 @@
 <div class="container" id="mainContainer">
   <header>
     <h1 id="lessonMainTitle">Lesson 12: My Diary</h1>
-    <p id="lessonSubTitle">Anne Frank • Interactive Reader & Dynamic Hover Translation</p>
+    <p id="lessonSubTitle">Anne Frank • Interactive Reader & Dynamic Translation</p>
   </header>
 
   <div class="lesson-tabs">
@@ -232,7 +231,7 @@
   <div class="menu" id="unitMenu"></div>
 
   <div class="controls">
-    <button id="playBtn" class="action-btn">▶ Play Audio & Live Hover</button>
+    <button id="playBtn" class="action-btn">▶ Play Audio</button>
     <button id="pauseBtn" class="action-btn" disabled>⏸ Pause</button>
     <button id="stopBtn" class="action-btn" disabled>⏹ Stop</button>
     <div class="speed-box">
@@ -242,7 +241,7 @@
     </div>
   </div>
 
-  <div class="status-bar" id="statusBar">Ready — Select Section and Press Play</div>
+  <div class="status-bar" id="statusBar">Tap any sentence to view Bengali meaning</div>
 
   <div class="content">
     <div id="introBlock"></div>
@@ -256,7 +255,7 @@
 
 <div class="floating-menu-container">
   <div class="floating-dropdown" id="floatingDropdown">
-    <div style="padding: 6px 18px; font-size: 0.75rem; text-transform: uppercase; color: #888; font-weight:700;">Jump To Section</div>
+    <div style="padding: 4px 14px; font-size: 0.7rem; text-transform: uppercase; color: #888; font-weight:700;">Jump To Section</div>
     <div id="floatingMenuItems"></div>
   </div>
   <button class="floating-btn" id="floatingBtn">⚙</button>
@@ -270,7 +269,7 @@
 </div>
 
 <script>
-// EXTENSIVE DICTIONARY (OVER 60%+ OF ALL WORDS IN LESSONS 12 & 13)
+// EXTENSIVE DICTIONARY
 const dictionary = {
   "sunday": "রবিবার", "june": "জুন মাস", "friday": "শুক্রবার", "woke": "জেগে উঠেছিলাম",
   "o'clock": "ঘণ্টার সময়", "wonder": "অবাক হওয়ার বিষয়", "birthday": "জন্মদিন", "allowed": "অনুমতিপ্রাপ্ত",
@@ -322,8 +321,6 @@ const dictionary = {
   "escaped": "পালিয়ে গিয়েছিল", "grandmother": "ঠাকুরমা", "died": "মারা গিয়েছিলেন", "present": "উপস্থিত",
   "thoughts": "চিন্তাভাবনা", "love": "ভালোবাসা", "kindergarten": "শিশু বিদ্যালয়", "continued": "চালিয়ে গিয়েছিল",
   "form": "শ্রেণী", "good-bye": "বিদায়", "wept": "কেঁদেছিল", "sad": "দুঃখজনক",
-
-  // Lesson 13 Words
   "memory": "স্মৃতিশক্তি", "stored": "জমা ছিল", "incredible": "অবিশ্বাস্য", "amount": "পরিমাণ",
   "folklore": "লোককাহিনী", "astonish": "অবাক করা", "spirits": "আত্মা / ভূত", "mischievous": "দুষ্টু / উপদ্রবী",
   "ghosts": "ভূতসমূহ", "evening": "সন্ধ্যাবেলা", "town": "শহর", "invited": "আমন্ত্রিত",
@@ -339,22 +336,7 @@ const dictionary = {
   "age": "বয়স", "desk": "ডেস্ক / পড়ার টেবিল", "corner": "কোণ", "fetch": "আনা",
   "cupboard": "আলমারি", "far": "দূরবর্তী", "end": "শেষ প্রান্ত", "lazy": "অলসে",
   "move": "নড়াচড়া করা", "seat": "বসার জায়গা", "merely": "কেবলমাত্র", "stretched": "প্রসারিত করেছিল",
-  "touching": "স্পর্শ করা", "realised": "বুঝতে পেরেছিল", "agility": "ক্ষিপ্রতা / চপলতা", "volleyball": "ভলিবল খেলা",
-  "matches": "খেলা / ম্যাচ", "lonely": "একাকী / নির্জন", "peepul": "অশ্বত্থ গাছ", "annoyed": "বিরক্ত",
-  "rushes": "ছুটে আসা", "upsets": "উল্টে দেয়", "tongas": "টাঙ্গা গাড়ি", "bullock-carts": "গরুর গাড়ি",
-  "cycles": "সাইকেল", "bus": "বাস গাড়ি", "beneath": "নিচে", "warned": "স সতর্ক করেছিল",
-  "yawn": "হাই তোলা", "snapping": "তুড়ি মারা", "fingers": "আঙুলগুলি", "jump": "লাফ দেওয়া",
-  "throat": "গলা / গহ্বর", "ruin": "নষ্ট করা", "digestion": "হজমশক্তি", "bite": "কামড়ানো",
-  "alone": "একা / না ঘাঁটানো", "finished": "শেষ করেছিল", "dinner": "রাতের খাবার", "heard": "শুনেছিল",
-  "visit": "পরিদর্শন করা", "reluctant": "অনিচ্ছুক", "retire": "বিশ্রাম নেওয়া / শুতে যাওয়া", "recite": "আবৃত্তি করা / জপ করা",
-  "magical": "অলৌকিক / মন্ত্রপূত", "verses": "মন্ত্র / ছড়া", "goblins": "দৈত্য / পিশাচ", "sprites": "প্রেতাত্মা",
-  "uneasy": "অস্বস্তি বোধ করা", "examining": "পরীক্ষা করা", "snakes": "সাপসমূহ", "twisting": "মোচড় দেওয়া",
-  "turning": "পাশ ফেরা", "walls": "দেয়ালগুলি", "shadows": "ছায়াসমূহ", "attempted": "চেষ্টা করেছিল",
-  "eerie": "ভীতিপ্রদ / অদ্ভুত", "knocking": "ধাক্কা দেওয়া / করাঘাত", "voices": "গলার আওয়াজ", "pale": "ফ্যাকাশে",
-  "anxious": "উদ্বিগ্ন", "succeeded": "সফল হয়েছিল", "frightening": "ভীতি সৃষ্টি করা", "protested": "প্রতিবাদ করল",
-  "admit": "স্বীকার করা", "nervous": "ঘাবড়ে যাওয়া", "hustled": "তাড়াহুড়ো করে নিয়ে যাওয়া", "conspiring": "চক্রান্ত করা",
-  "screaming": "চিৎকার করা", "direction": "দিক", "left": "ছেড়ে চলে যাওয়া", "disappeared": "উধাও হয়ে যাওয়া",
-  "dashing": "ছুটোছুটি করা", "pyjamas": "পাজামা", "collapsed": "জ্ঞান হারিয়ে ঢলে পড়া"
+  "touching": "স্পর্শ করা", "realised": "বুঝতে পেরেছিল", "agility": "ক্ষিপ্রতা / চপলতা"
 };
 
 const lesson12Data = {
@@ -515,7 +497,7 @@ function switchUnit(idx) {
 
   buildStory();
   hideHoverTooltip();
-  statusBar.textContent = `Ready — ${unit.title} loaded. Press Play to listen.`;
+  statusBar.textContent = `Tap any sentence to read Bengali meaning`;
 }
 
 function buildStory() {
@@ -547,8 +529,9 @@ function buildStory() {
     });
   });
 
-  // Sentence Hover Listeners for Mouse Over
+  // Sentence Mouse & Touch/Tap Listeners
   document.querySelectorAll('.sentence').forEach(sentEl => {
+    // Desktop Hover
     sentEl.addEventListener('mouseenter', function() {
       if (!isPlaying) {
         const sIdx = parseInt(this.dataset.sidx);
@@ -561,6 +544,18 @@ function buildStory() {
     sentEl.addEventListener('mouseleave', function() {
       if (!isPlaying) {
         hideHoverTooltip();
+      }
+    });
+
+    // Mobile Direct Tap / Click for immediate translation display close to sentence
+    sentEl.addEventListener('click', function(e) {
+      if (e.target.classList.contains('word')) return; // Let word dictionary popup handle word clicks
+      const sIdx = parseInt(this.dataset.sidx);
+      const u = currentLessonData.units[currentUnitIdx];
+      if (u && u.sentences[sIdx]) {
+        clearHighlights();
+        this.classList.add('active');
+        positionHoverTooltip(this, u.sentences[sIdx].bn);
       }
     });
   });
@@ -578,6 +573,7 @@ function clearHighlights() {
   document.querySelectorAll('.sentence').forEach(s => s.classList.remove('active'));
 }
 
+// Optimized sentence translation positioning right below sentence for mobile screens
 function positionHoverTooltip(sentEl, text) {
   if (!sentEl || !text) {
     hideHoverTooltip();
@@ -587,16 +583,20 @@ function positionHoverTooltip(sentEl, text) {
 
   const rect = sentEl.getBoundingClientRect();
   const containerRect = mainContainer.getBoundingClientRect();
+  const isMobile = window.innerWidth <= 600;
 
-  let top = rect.bottom - containerRect.top + 8;
+  // Very tight top offset directly beneath text line (+2px on mobile)
+  let top = rect.bottom - containerRect.top + (isMobile ? 2 : 4);
   let left = rect.left - containerRect.left;
 
-  // Boundary adjustment to prevent overflowing main container
-  const tooltipWidth = 320;
-  if (left + tooltipWidth > containerRect.width) {
-    left = Math.max(10, containerRect.width - tooltipWidth - 20);
+  // Keep tooltip strictly bounded inside container padding
+  const maxAllowedWidth = containerRect.width - 16;
+  sentenceBnTooltip.style.maxWidth = maxAllowedWidth + 'px';
+
+  if (left + 280 > containerRect.width) {
+    left = Math.max(8, containerRect.width - 290);
   }
-  if (left < 10) left = 10;
+  if (left < 8) left = 8;
 
   sentenceBnTooltip.style.top = top + 'px';
   sentenceBnTooltip.style.left = left + 'px';
@@ -614,11 +614,9 @@ function highlightSentence(sIdx) {
     sentEl.classList.add('active');
     sentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     
-    // Position hovering Bengali translation dynamically right beneath active sentence
     const u = currentLessonData.units[currentUnitIdx];
     if (u && u.sentences[sIdx]) {
-      // Short delay to ensure correct scroll position rect calculation
-      setTimeout(() => positionHoverTooltip(sentEl, u.sentences[sIdx].bn), 100);
+      setTimeout(() => positionHoverTooltip(sentEl, u.sentences[sIdx].bn), 80);
     }
   }
 }
@@ -643,8 +641,8 @@ function showWordPopup(el) {
 
   const rect = el.getBoundingClientRect();
   const containerRect = mainContainer.getBoundingClientRect();
-  let top = rect.bottom - containerRect.top + 10;
-  let left = Math.max(10, rect.left - containerRect.left - 20);
+  let top = rect.bottom - containerRect.top + 6;
+  let left = Math.max(8, rect.left - containerRect.left - 10);
 
   popup.style.top = top + 'px';
   popup.style.left = left + 'px';
@@ -690,7 +688,7 @@ function playNext() {
       if (!isPlaying || isPaused) return;
       currentSentence++;
       playNext();
-    }, 500);
+    }, 400);
   });
 }
 
@@ -732,7 +730,7 @@ function stopAll() {
   playBtn.disabled = false;
   pauseBtn.disabled = true;
   stopBtn.disabled = true;
-  statusBar.textContent = 'Stopped';
+  statusBar.textContent = 'Tap any sentence to view Bengali meaning';
 }
 
 speedSlider.addEventListener('input', () => {
