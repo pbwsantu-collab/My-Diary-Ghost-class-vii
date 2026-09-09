@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class VIII English Reader - Live Bengali Sync & Dictionary</title>
+<title>Class VIII English Reader - Dual Voice Bilingual Sync</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
   
@@ -113,26 +113,6 @@
   }
   .speed-box input[type=range] { width: 80px; accent-color: #1a5276; cursor: pointer; }
 
-  /* Live Subtitle Banner */
-  .live-subtitle-box {
-    background: #112d42;
-    color: #ffd54f;
-    padding: 14px 20px;
-    margin: 10px 24px;
-    border-radius: 12px;
-    font-family: 'Noto Sans Bengali', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 600;
-    text-align: center;
-    min-height: 58px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
-    border: 2px solid #f39c12;
-  }
-  .live-subtitle-box .placeholder { color: #8fa3b0; font-size: 0.95rem; font-family: 'Poppins', sans-serif; font-weight: 400; }
-
   .status-bar {
     text-align: center;
     padding: 8px 14px;
@@ -142,7 +122,7 @@
     font-weight: 500;
   }
   
-  .content { padding: 16px 28px 40px; }
+  .content { padding: 16px 28px 40px; position: relative; }
   .section-block {
     background: #f8fafc;
     border-left: 4px solid #3498db;
@@ -152,14 +132,19 @@
   }
   h2 { color: #1a5276; margin: 18px 0 12px; font-size: 1.35rem; border-bottom: 2px solid #eaf2f8; padding-bottom: 6px; }
   
-  .story { font-size: 1.1rem; text-align: justify; line-height: 1.8; }
+  .story { font-size: 1.1rem; text-align: justify; line-height: 2.2; position: relative; }
+  
   .sentence {
     display: inline;
-    padding: 2px 4px;
-    border-radius: 4px;
-    transition: background 0.25s;
+    padding: 3px 6px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+    cursor: pointer;
   }
-  .sentence.active { background: #d5f5e3; border-bottom: 3px solid #27ae60; }
+  .sentence:hover { background: #fef9e7; }
+  .sentence.active { background: #d5f5e3; border-bottom: 3px solid #27ae60; font-weight: 500; }
+  .sentence.speaking-bn { background: #fef9e7; border-bottom: 3px solid #f39c12; }
   
   .word {
     display: inline;
@@ -170,16 +155,32 @@
   }
   .word.has-meaning { border-bottom: 1.5px dotted #2980b9; }
   .word:hover { background: #e3f2fd; color: #1a5276; font-weight: 600; }
-  
-  .word-nest, .activity-box {
-    background: #f0f7f4;
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin-top: 24px;
-  }
-  .activity-box { background: #fcf3cf; }
 
-  /* Floating Menu */
+  /* Floating Sentence Bengali Tooltip */
+  .sentence-bn-tooltip {
+    position: absolute;
+    z-index: 800;
+    background: #112d42;
+    color: #ffd54f;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: 'Noto Sans Bengali', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    border: 1.5px solid #f39c12;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    opacity: 0;
+    transform: translateY(6px);
+    max-width: 90%;
+  }
+  .sentence-bn-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Floating Control Menu */
   .floating-menu-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
   .floating-btn {
     width: 58px; height: 58px; border-radius: 50%;
@@ -202,7 +203,7 @@
   }
   .floating-dropdown button:hover { background: #eaf2f8; color: #1a5276; }
 
-  /* Word Popup */
+  /* Word Dictionary Popup */
   #popup {
     position: absolute; z-index: 1000; background: #fff8e1;
     border: 2px solid #ffc107; border-radius: 14px; padding: 14px 16px;
@@ -221,7 +222,7 @@
 <div class="container" id="mainContainer">
   <header>
     <h1 id="lessonMainTitle">Lesson 12: My Diary</h1>
-    <p id="lessonSubTitle">Anne Frank • Complete Unabridged Text</p>
+    <p id="lessonSubTitle">Anne Frank • Sequential English & Bengali Audio Reader</p>
   </header>
 
   <div class="lesson-tabs">
@@ -232,7 +233,7 @@
   <div class="menu" id="unitMenu"></div>
 
   <div class="controls">
-    <button id="playBtn" class="action-btn">▶ Play Audio & Live Sync</button>
+    <button id="playBtn" class="action-btn">▶ Play Dual Voice Audio</button>
     <button id="pauseBtn" class="action-btn" disabled>⏸ Pause</button>
     <button id="stopBtn" class="action-btn" disabled>⏹ Stop</button>
     <div class="speed-box">
@@ -242,17 +243,13 @@
     </div>
   </div>
 
-  <!-- Live Bengali Translation Banner -->
-  <div class="live-subtitle-box" id="liveSubtitles">
-    <span class="placeholder">বাংলা অনুবাদ এখানে অডিওর সাথে সাথে ভেসে উঠবে (Click any underlined word for Bengali meaning)</span>
-  </div>
-
   <div class="status-bar" id="statusBar">Ready — Select Section and Press Play</div>
 
   <div class="content">
     <div id="introBlock"></div>
     <h2 id="unitTitle">Unit Title</h2>
     <div class="story" id="storyText"></div>
+    <div class="sentence-bn-tooltip" id="sentenceBnTooltip"></div>
     <div id="extraContent"></div>
   </div>
 </div>
@@ -273,9 +270,7 @@
 </div>
 
 <script>
-// EXTENSIVE DICTIONARY COVERING OVER 60%+ OF ALL WORDS IN LESSON 12 & 13
 const dictionary = {
-  // Lesson 12 Words
   "sunday": "রবিবার", "june": "জুন মাস", "friday": "শুক্রবার", "woke": "জেগে উঠেছিলাম",
   "o'clock": "ঘণ্টার সময়", "wonder": "অবাক হওয়ার বিষয়", "birthday": "জন্মদিন", "allowed": "অনুমতিপ্রাপ্ত",
   "control": "দমন করা / নিয়ন্ত্রণ", "curiosity": "কৌতূহল", "until": "পর্যন্ত", "quarter": "এক-চতুর্থাংশ (১৫ মিনিট)",
@@ -284,7 +279,7 @@ const dictionary = {
   "welcome": "অভ্যর্থনা", "cat": "বিড়াল", "soon": "শীঘ্রই", "mummy": "মা",
   "daddy": "বাবা", "sitting": "বসার ঘর", "undo": "খোলা", "presents": "উপহারসমূহ",
   "first": "প্রথম", "greet": "শুভেচ্ছা জানানো", "possibly": "সম্ভবত", "nicest": "সবচেয়ে চমৎকার",
-  "table": "টেবিল", "bunch": "গুচ্ছ / তোড়া", "roses": "গোলাপ ফুল", "plant": "চারাগাছ",
+  "table": "টেবিল", "bunch": "গোছা / তোড়া", "roses": "গোলাপ ফুল", "plant": "চারাগাছ",
   "peonies": "পিয়োনি ফুল", "arrived": "এসে পৌঁছেছিল", "during": "সময়ে / চলাকালীন", "day": "দিন",
   "masses": "প্রচুর পরিমানে", "things": "জিনিসপত্র", "thoroughly": "সম্পূর্ণরূপে", "spoiled": "আদরে মাথায় ওঠা",
   "various": "বিভিন্ন", "friends": "বন্ধুরা", "among": "মধ্যে", "given": "দেওয়া হয়েছিল",
@@ -300,7 +295,7 @@ const dictionary = {
   "boys": "ছেলেরা", "years": "বছরসমূহ", "jewish": "ইহুদি", "secondary": "মাধ্যমিক",
   "together": "একসাথে", "friendly": "বন্ধুভাবাপন্ন", "different": "আলাদা / ভিন্ন", "written": "লেখা হয়েছে",
   "few": "কিছু / অল্প", "days": "দিনগুলি", "wanted": "চেয়েছিলাম", "think": "ভাবা",
-  "diary": "ডায়েরি / দিনলিপি", "odd": "অদ্ভুত", "idea": "ভাবনা / ধারণা", "keep": "রাখা",
+  "diary": "ডায়েরি / দিনলিপি", "odd": "অ অদ্ভুত", "idea": "ভাবনা / ধারণা", "keep": "রাখা",
   "neither": "না এটাও... না ওটাও", "interested": "আগ্রহী", "unbosomings": "মনের কথা প্রকাশ", "thirteen": "তেরো",
   "girl": "মেয়ে", "matter": "বিষয় / ব্যাপার", "write": "লেখা", "bring": "বাইরে আনা",
   "buried": "লুকিয়ে থাকা / কবরস্থ", "deep": "গভীর", "heart": "হৃদয়", "saying": "প্রবাদ",
@@ -326,8 +321,6 @@ const dictionary = {
   "escaped": "পালিয়ে গিয়েছিল", "grandmother": "ঠাকুরমা", "died": "মারা গিয়েছিলেন", "present": "উপস্থিত",
   "thoughts": "চিন্তাভাবনা", "love": "ভালোবাসা", "kindergarten": "শিশু বিদ্যালয়", "continued": "চালিয়ে গিয়েছিল",
   "form": "শ্রেণী", "good-bye": "বিদায়", "wept": "কেঁদেছিল", "sad": "দুঃখজনক",
-
-  // Lesson 13 Words
   "memory": "স্মৃতিশক্তি", "stored": "জমা ছিল", "incredible": "অবিশ্বাস্য", "amount": "পরিমাণ",
   "folklore": "লোককাহিনী", "astonish": "অবাক করা", "spirits": "আত্মা / ভূত", "mischievous": "দুষ্টু / উপদ্রবী",
   "ghosts": "ভূতসমূহ", "evening": "সন্ধ্যাবেলা", "town": "শহর", "invited": "আমন্ত্রিত",
@@ -436,19 +429,20 @@ const lesson13Data = {
   ]
 };
 
-// Global Variables
+// Global State
 let currentLessonData = lesson12Data;
 let currentUnitIdx = 0;
 let currentSentence = 0;
 let isPlaying = false;
 let isPaused = false;
 let englishVoice = null;
+let bengaliVoice = null;
 let speechRate = 0.85;
 
 // DOM Elements
 const storyDiv = document.getElementById('storyText');
 const statusBar = document.getElementById('statusBar');
-const liveSubtitles = document.getElementById('liveSubtitles');
+const sentenceBnTooltip = document.getElementById('sentenceBnTooltip');
 const playBtn = document.getElementById('playBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const stopBtn = document.getElementById('stopBtn');
@@ -518,7 +512,7 @@ function switchUnit(idx) {
   extraContent.innerHTML = '';
 
   buildStory();
-  liveSubtitles.innerHTML = '<span class="placeholder">বাংলা অনুবাদ এখানে অডিওর সাথে সাথে ভেসে উঠবে (Click any underlined word for Bengali meaning)</span>';
+  hideHoverTooltip();
   statusBar.textContent = `Ready — ${unit.title} loaded. Press Play to listen.`;
 }
 
@@ -549,38 +543,123 @@ function buildStory() {
       showWordPopup(this);
     });
   });
+
+  document.querySelectorAll('.sentence').forEach(sentEl => {
+    sentEl.addEventListener('mouseenter', function() {
+      if (!isPlaying) {
+        const sIdx = parseInt(this.dataset.sidx);
+        const u = currentLessonData.units[currentUnitIdx];
+        if (u && u.sentences[sIdx]) {
+          positionHoverTooltip(this, u.sentences[sIdx].bn);
+        }
+      }
+    });
+    sentEl.addEventListener('mouseleave', function() {
+      if (!isPlaying) {
+        hideHoverTooltip();
+      }
+    });
+  });
 }
 
 function loadVoices() {
   const voices = speechSynthesis.getVoices();
   if (!voices.length) return;
   englishVoice = voices.find(v => v.lang === 'en-IN') || voices.find(v => v.lang.startsWith('en'));
+  bengaliVoice = voices.find(v => v.lang === 'bn-IN' || v.lang === 'bn-BD') || voices.find(v => v.lang.startsWith('bn'));
 }
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
 function clearHighlights() {
-  document.querySelectorAll('.sentence').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sentence').forEach(s => {
+    s.classList.remove('active');
+    s.classList.remove('speaking-bn');
+  });
 }
 
-function highlightSentence(sIdx) {
+function positionHoverTooltip(sentEl, text) {
+  if (!sentEl || !text) {
+    hideHoverTooltip();
+    return;
+  }
+  sentenceBnTooltip.textContent = text;
+
+  const rect = sentEl.getBoundingClientRect();
+  const containerRect = mainContainer.getBoundingClientRect();
+
+  let top = rect.bottom - containerRect.top + 8;
+  let left = rect.left - containerRect.left;
+
+  const tooltipWidth = 320;
+  if (left + tooltipWidth > containerRect.width) {
+    left = Math.max(10, containerRect.width - tooltipWidth - 20);
+  }
+  if (left < 10) left = 10;
+
+  sentenceBnTooltip.style.top = top + 'px';
+  sentenceBnTooltip.style.left = left + 'px';
+  sentenceBnTooltip.classList.add('visible');
+}
+
+function hideHoverTooltip() {
+  sentenceBnTooltip.classList.remove('visible');
+}
+
+function highlightSentence(sIdx, isBengali = false) {
   clearHighlights();
   const sentEl = document.querySelector(`.sentence[data-sidx="${sIdx}"]`);
   if (sentEl) {
-    sentEl.classList.add('active');
+    if (isBengali) {
+      sentEl.classList.add('speaking-bn');
+    } else {
+      sentEl.classList.add('active');
+    }
     sentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    const u = currentLessonData.units[currentUnitIdx];
+    if (u && u.sentences[sIdx]) {
+      setTimeout(() => positionHoverTooltip(sentEl, u.sentences[sIdx].bn), 80);
+    }
   }
 }
 
-function speakText(text, onEnd) {
+// BILINGUAL DUAL VOICE SEQUENCE: English First -> Bengali Immediately After
+function speakBilingualSentencePair(enText, bnText, onComplete) {
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.voice = englishVoice;
-  u.lang = englishVoice ? englishVoice.lang : 'en-US';
-  u.rate = speechRate;
-  u.onend = () => { if (onEnd) onEnd(); };
-  u.onerror = () => { if (onEnd) onEnd(); };
-  speechSynthesis.speak(u);
+  
+  // 1. Prepare English Utterance
+  const uEn = new SpeechSynthesisUtterance(enText);
+  uEn.voice = englishVoice;
+  uEn.lang = englishVoice ? englishVoice.lang : 'en-IN';
+  uEn.rate = speechRate;
+
+  // 2. Prepare Bengali Utterance
+  const uBn = new SpeechSynthesisUtterance(bnText);
+  uBn.voice = bengaliVoice;
+  uBn.lang = bengaliVoice ? bengaliVoice.lang : 'bn-IN';
+  uBn.rate = speechRate;
+
+  uEn.onend = () => {
+    if (!isPlaying || isPaused) return;
+    highlightSentence(currentSentence, true); // Change visual style to indicate Bengali reading
+    statusBar.textContent = `Reading Bengali translation (${currentSentence + 1}/${currentLessonData.units[currentUnitIdx].sentences.length})`;
+    
+    // Speak Bengali voice immediately after English ends
+    speechSynthesis.speak(uBn);
+  };
+
+  uBn.onend = () => {
+    if (onComplete) onComplete();
+  };
+
+  uEn.onerror = () => { if (onComplete) onComplete(); };
+  uBn.onerror = () => { if (onComplete) onComplete(); };
+
+  // Start speaking English
+  highlightSentence(currentSentence, false);
+  statusBar.textContent = `Reading English sentence (${currentSentence + 1}/${currentLessonData.units[currentUnitIdx].sentences.length})`;
+  speechSynthesis.speak(uEn);
 }
 
 function showWordPopup(el) {
@@ -604,7 +683,11 @@ function hidePopup() { popup.classList.remove('show'); }
 
 popupClose.addEventListener('click', hidePopup);
 popupSpeak.addEventListener('click', () => {
-  speakText(popupEn.textContent);
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(popupEn.textContent);
+  u.voice = englishVoice;
+  u.rate = speechRate;
+  speechSynthesis.speak(u);
 });
 
 document.addEventListener('click', (e) => {
@@ -625,24 +708,19 @@ function playNext() {
   if (currentSentence >= unit.sentences.length) {
     stopAll();
     statusBar.textContent = 'Finished reading Section ✓';
-    liveSubtitles.textContent = 'পাঠ শেষ হয়েছে ✓';
+    hideHoverTooltip();
     return;
   }
 
   const s = unit.sentences[currentSentence];
-  highlightSentence(currentSentence);
   
-  // LIVE SYNC: Display Bengali meaning on banner at pace with audio
-  liveSubtitles.textContent = s.bn;
-  statusBar.textContent = `Reading Sentence ${currentSentence + 1} of ${unit.sentences.length}`;
-
-  speakText(s.en, () => {
+  speakBilingualSentencePair(s.en, s.bn, () => {
     if (!isPlaying || isPaused) return;
     setTimeout(() => {
       if (!isPlaying || isPaused) return;
       currentSentence++;
       playNext();
-    }, 500);
+    }, 400);
   });
 }
 
@@ -679,6 +757,7 @@ function stopAll() {
   speechSynthesis.cancel();
   currentSentence = 0;
   clearHighlights();
+  hideHoverTooltip();
   hidePopup();
   playBtn.disabled = false;
   pauseBtn.disabled = true;
