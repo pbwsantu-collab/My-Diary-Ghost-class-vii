@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class VIII English Reader - Dual Voice Bilingual Sync</title>
+<title>Class VIII English Reader - Hovering Live Translation</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
   
@@ -144,7 +144,6 @@
   }
   .sentence:hover { background: #fef9e7; }
   .sentence.active { background: #d5f5e3; border-bottom: 3px solid #27ae60; font-weight: 500; }
-  .sentence.speaking-bn { background: #fef9e7; border-bottom: 3px solid #f39c12; }
   
   .word {
     display: inline;
@@ -222,7 +221,7 @@
 <div class="container" id="mainContainer">
   <header>
     <h1 id="lessonMainTitle">Lesson 12: My Diary</h1>
-    <p id="lessonSubTitle">Anne Frank • Sequential English & Bengali Audio Reader</p>
+    <p id="lessonSubTitle">Anne Frank • Interactive Reader & Dynamic Hover Translation</p>
   </header>
 
   <div class="lesson-tabs">
@@ -233,7 +232,7 @@
   <div class="menu" id="unitMenu"></div>
 
   <div class="controls">
-    <button id="playBtn" class="action-btn">▶ Play Dual Voice Audio</button>
+    <button id="playBtn" class="action-btn">▶ Play Audio & Live Hover</button>
     <button id="pauseBtn" class="action-btn" disabled>⏸ Pause</button>
     <button id="stopBtn" class="action-btn" disabled>⏹ Stop</button>
     <div class="speed-box">
@@ -249,6 +248,7 @@
     <div id="introBlock"></div>
     <h2 id="unitTitle">Unit Title</h2>
     <div class="story" id="storyText"></div>
+    <!-- Hovering sentence subtitle box -->
     <div class="sentence-bn-tooltip" id="sentenceBnTooltip"></div>
     <div id="extraContent"></div>
   </div>
@@ -270,6 +270,7 @@
 </div>
 
 <script>
+// EXTENSIVE DICTIONARY (OVER 60%+ OF ALL WORDS IN LESSONS 12 & 13)
 const dictionary = {
   "sunday": "রবিবার", "june": "জুন মাস", "friday": "শুক্রবার", "woke": "জেগে উঠেছিলাম",
   "o'clock": "ঘণ্টার সময়", "wonder": "অবাক হওয়ার বিষয়", "birthday": "জন্মদিন", "allowed": "অনুমতিপ্রাপ্ত",
@@ -321,6 +322,8 @@ const dictionary = {
   "escaped": "পালিয়ে গিয়েছিল", "grandmother": "ঠাকুরমা", "died": "মারা গিয়েছিলেন", "present": "উপস্থিত",
   "thoughts": "চিন্তাভাবনা", "love": "ভালোবাসা", "kindergarten": "শিশু বিদ্যালয়", "continued": "চালিয়ে গিয়েছিল",
   "form": "শ্রেণী", "good-bye": "বিদায়", "wept": "কেঁদেছিল", "sad": "দুঃখজনক",
+
+  // Lesson 13 Words
   "memory": "স্মৃতিশক্তি", "stored": "জমা ছিল", "incredible": "অবিশ্বাস্য", "amount": "পরিমাণ",
   "folklore": "লোককাহিনী", "astonish": "অবাক করা", "spirits": "আত্মা / ভূত", "mischievous": "দুষ্টু / উপদ্রবী",
   "ghosts": "ভূতসমূহ", "evening": "সন্ধ্যাবেলা", "town": "শহর", "invited": "আমন্ত্রিত",
@@ -429,14 +432,13 @@ const lesson13Data = {
   ]
 };
 
-// Global State
+// Global Variables
 let currentLessonData = lesson12Data;
 let currentUnitIdx = 0;
 let currentSentence = 0;
 let isPlaying = false;
 let isPaused = false;
 let englishVoice = null;
-let bengaliVoice = null;
 let speechRate = 0.85;
 
 // DOM Elements
@@ -537,6 +539,7 @@ function buildStory() {
   });
   storyDiv.innerHTML = html;
 
+  // Word Dictionary Click Listeners
   document.querySelectorAll('.word').forEach(el => {
     el.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -544,6 +547,7 @@ function buildStory() {
     });
   });
 
+  // Sentence Hover Listeners for Mouse Over
   document.querySelectorAll('.sentence').forEach(sentEl => {
     sentEl.addEventListener('mouseenter', function() {
       if (!isPlaying) {
@@ -566,16 +570,12 @@ function loadVoices() {
   const voices = speechSynthesis.getVoices();
   if (!voices.length) return;
   englishVoice = voices.find(v => v.lang === 'en-IN') || voices.find(v => v.lang.startsWith('en'));
-  bengaliVoice = voices.find(v => v.lang === 'bn-IN' || v.lang === 'bn-BD') || voices.find(v => v.lang.startsWith('bn'));
 }
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
 function clearHighlights() {
-  document.querySelectorAll('.sentence').forEach(s => {
-    s.classList.remove('active');
-    s.classList.remove('speaking-bn');
-  });
+  document.querySelectorAll('.sentence').forEach(s => s.classList.remove('active'));
 }
 
 function positionHoverTooltip(sentEl, text) {
@@ -591,6 +591,7 @@ function positionHoverTooltip(sentEl, text) {
   let top = rect.bottom - containerRect.top + 8;
   let left = rect.left - containerRect.left;
 
+  // Boundary adjustment to prevent overflowing main container
   const tooltipWidth = 320;
   if (left + tooltipWidth > containerRect.width) {
     left = Math.max(10, containerRect.width - tooltipWidth - 20);
@@ -606,60 +607,31 @@ function hideHoverTooltip() {
   sentenceBnTooltip.classList.remove('visible');
 }
 
-function highlightSentence(sIdx, isBengali = false) {
+function highlightSentence(sIdx) {
   clearHighlights();
   const sentEl = document.querySelector(`.sentence[data-sidx="${sIdx}"]`);
   if (sentEl) {
-    if (isBengali) {
-      sentEl.classList.add('speaking-bn');
-    } else {
-      sentEl.classList.add('active');
-    }
+    sentEl.classList.add('active');
     sentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     
+    // Position hovering Bengali translation dynamically right beneath active sentence
     const u = currentLessonData.units[currentUnitIdx];
     if (u && u.sentences[sIdx]) {
-      setTimeout(() => positionHoverTooltip(sentEl, u.sentences[sIdx].bn), 80);
+      // Short delay to ensure correct scroll position rect calculation
+      setTimeout(() => positionHoverTooltip(sentEl, u.sentences[sIdx].bn), 100);
     }
   }
 }
 
-// BILINGUAL DUAL VOICE SEQUENCE: English First -> Bengali Immediately After
-function speakBilingualSentencePair(enText, bnText, onComplete) {
+function speakText(text, onEnd) {
   speechSynthesis.cancel();
-  
-  // 1. Prepare English Utterance
-  const uEn = new SpeechSynthesisUtterance(enText);
-  uEn.voice = englishVoice;
-  uEn.lang = englishVoice ? englishVoice.lang : 'en-IN';
-  uEn.rate = speechRate;
-
-  // 2. Prepare Bengali Utterance
-  const uBn = new SpeechSynthesisUtterance(bnText);
-  uBn.voice = bengaliVoice;
-  uBn.lang = bengaliVoice ? bengaliVoice.lang : 'bn-IN';
-  uBn.rate = speechRate;
-
-  uEn.onend = () => {
-    if (!isPlaying || isPaused) return;
-    highlightSentence(currentSentence, true); // Change visual style to indicate Bengali reading
-    statusBar.textContent = `Reading Bengali translation (${currentSentence + 1}/${currentLessonData.units[currentUnitIdx].sentences.length})`;
-    
-    // Speak Bengali voice immediately after English ends
-    speechSynthesis.speak(uBn);
-  };
-
-  uBn.onend = () => {
-    if (onComplete) onComplete();
-  };
-
-  uEn.onerror = () => { if (onComplete) onComplete(); };
-  uBn.onerror = () => { if (onComplete) onComplete(); };
-
-  // Start speaking English
-  highlightSentence(currentSentence, false);
-  statusBar.textContent = `Reading English sentence (${currentSentence + 1}/${currentLessonData.units[currentUnitIdx].sentences.length})`;
-  speechSynthesis.speak(uEn);
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = englishVoice;
+  u.lang = englishVoice ? englishVoice.lang : 'en-US';
+  u.rate = speechRate;
+  u.onend = () => { if (onEnd) onEnd(); };
+  u.onerror = () => { if (onEnd) onEnd(); };
+  speechSynthesis.speak(u);
 }
 
 function showWordPopup(el) {
@@ -683,11 +655,7 @@ function hidePopup() { popup.classList.remove('show'); }
 
 popupClose.addEventListener('click', hidePopup);
 popupSpeak.addEventListener('click', () => {
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(popupEn.textContent);
-  u.voice = englishVoice;
-  u.rate = speechRate;
-  speechSynthesis.speak(u);
+  speakText(popupEn.textContent);
 });
 
 document.addEventListener('click', (e) => {
@@ -713,14 +681,16 @@ function playNext() {
   }
 
   const s = unit.sentences[currentSentence];
-  
-  speakBilingualSentencePair(s.en, s.bn, () => {
+  highlightSentence(currentSentence);
+  statusBar.textContent = `Reading Sentence ${currentSentence + 1} of ${unit.sentences.length}`;
+
+  speakText(s.en, () => {
     if (!isPlaying || isPaused) return;
     setTimeout(() => {
       if (!isPlaying || isPaused) return;
       currentSentence++;
       playNext();
-    }, 400);
+    }, 500);
   });
 }
 
