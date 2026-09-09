@@ -3,237 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class VIII English Reader - Hovering Live Translation</title>
+<title>Class VIII English Reader - Close Sentence Translation</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
   
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(160deg, #e8f4f8 0%, #f5f0e6 100%);
+    background: #f4f7f9;
     color: #1a1a1a;
-    line-height: 1.65;
-    padding: 8px;
+    line-height: 1.6;
+    padding: 6px;
     min-height: 100vh;
   }
   .container {
-    max-width: 940px;
+    max-width: 800px;
     margin: 0 auto;
     background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 36px rgba(0,0,0,0.12);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     overflow: hidden;
-    position: relative;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
   }
   header {
     background: linear-gradient(135deg, #1a5276, #154360);
     color: white;
-    padding: 16px 20px;
+    padding: 14px 16px;
     text-align: center;
   }
-  header h1 { font-size: 1.5rem; margin-bottom: 4px; }
-  header p { opacity: 0.9; font-size: 0.85rem; }
+  header h1 { font-size: 1.35rem; margin-bottom: 2px; }
+  header p { opacity: 0.9; font-size: 0.8rem; }
 
   .lesson-tabs {
     display: flex;
     justify-content: center;
     background: #0e2e43;
-    padding: 8px;
-    gap: 8px;
+    padding: 6px;
+    gap: 6px;
   }
   .lesson-tabs button {
-    padding: 8px 16px;
+    padding: 6px 12px;
     border: none;
-    background: rgba(255,255,255,0.1);
-    color: #aed6f1;
+    background: rgba(255,255,255,0.15);
+    color: #d4e6f1;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    border-radius: 30px;
-    transition: all 0.25s ease;
+    border-radius: 20px;
   }
-  .lesson-tabs button.active { background: #1a5276; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .lesson-tabs button.active { background: #1a5276; color: #fff; }
 
   .menu {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    padding: 10px;
+    gap: 6px;
+    padding: 8px;
     background: #eaf2f8;
     border-bottom: 1px solid #d0dce8;
-    flex-wrap: wrap;
   }
   .menu button {
-    padding: 6px 14px;
-    border: 2px solid #1a5276;
-    border-radius: 50px;
+    padding: 5px 12px;
+    border: 1.5px solid #1a5276;
+    border-radius: 20px;
     background: white;
     color: #1a5276;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
   }
   .menu button.active { background: #1a5276; color: white; }
 
   .controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 8px;
     background: #f0f4f8;
     border-bottom: 1px solid #dce4ec;
   }
   button.action-btn {
-    padding: 8px 16px;
+    padding: 6px 14px;
     border: none;
-    border-radius: 50px;
-    font-size: 0.85rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.25s ease;
   }
   #playBtn { background: #27ae60; color: #fff; }
   #pauseBtn { background: #e67e22; color: #fff; }
   #stopBtn { background: #c0392b; color: #fff; }
+  #toggleModeBtn { background: #8e44ad; color: #fff; }
   
   .speed-box {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     background: #fff;
-    border: 1.5px solid #1a5276;
-    padding: 4px 10px;
-    border-radius: 50px;
-    font-size: 0.8rem;
+    border: 1px solid #1a5276;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
     color: #1a5276;
     font-weight: 600;
   }
-  .speed-box input[type=range] { width: 65px; accent-color: #1a5276; cursor: pointer; }
+  .speed-box input[type=range] { width: 55px; accent-color: #1a5276; }
 
   .status-bar {
     text-align: center;
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    padding: 6px;
+    font-size: 0.78rem;
     background: #e8f0f7;
     color: #1a5276;
-    font-weight: 500;
+    font-weight: 600;
   }
   
-  .content { padding: 12px 16px 30px; position: relative; }
-  .section-block {
-    background: #f8fafc;
-    border-left: 4px solid #3498db;
-    padding: 10px 14px;
-    margin-bottom: 16px;
-    border-radius: 0 8px 8px 0;
-  }
-  h2 { color: #1a5276; margin: 12px 0 8px; font-size: 1.2rem; border-bottom: 2px solid #eaf2f8; padding-bottom: 4px; }
+  .content { padding: 12px; }
+  h2 { color: #1a5276; margin: 8px 0; font-size: 1.1rem; border-bottom: 2px solid #eaf2f8; padding-bottom: 4px; }
   
-  .story { font-size: 1.05rem; text-align: justify; line-height: 2.1; position: relative; }
-  
-  .sentence {
-    display: inline;
-    padding: 2px 4px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    position: relative;
+  /* Sentence Blocks - Stacked for ultra-close reading */
+  .sentence-block {
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: #fafbfc;
+    border-left: 3px solid #b2cbe0;
+    transition: background 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
   }
-  .sentence:hover { background: #fef9e7; }
-  .sentence.active { background: #d5f5e3; border-bottom: 2px solid #27ae60; font-weight: 500; }
-  
+  .sentence-block:hover { background: #f0f7fc; border-left-color: #3498db; }
+  .sentence-block.active { background: #e8f8f5; border-left-color: #27ae60; }
+
+  .english-line {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #111;
+  }
+
   .word {
     display: inline;
     padding: 0 1px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: 0.15s;
+    border-radius: 2px;
   }
   .word.has-meaning { border-bottom: 1.5px dotted #2980b9; }
-  .word:hover { background: #e3f2fd; color: #1a5276; font-weight: 600; }
 
-  /* Floating Sentence Bengali Tooltip - Mobile Optimized */
-  .sentence-bn-tooltip {
-    position: absolute;
-    z-index: 800;
-    background: #112d42;
-    color: #ffd54f;
+  /* In-Flow Bengali Translation Banner - Positioned RIGHT under sentence */
+  .bengali-drawer {
+    display: none;
+    margin-top: 5px;
     padding: 6px 10px;
+    background: #112d42;
+    color: #ffe082;
     border-radius: 6px;
     font-family: 'Noto Sans Bengali', sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     font-weight: 600;
     line-height: 1.45;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    border: 1.5px solid #f39c12;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    opacity: 0;
-    transform: translateY(2px);
-    max-width: 96%;
+    border: 1px solid #f39c12;
   }
-  .sentence-bn-tooltip.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Floating Control Menu */
-  .floating-menu-container { position: fixed; bottom: 16px; right: 16px; z-index: 9999; }
-  .floating-btn {
-    width: 48px; height: 48px; border-radius: 50%;
-    background: linear-gradient(135deg, #1a5276, #113850);
-    color: #fff; border: 2px solid #fff; font-size: 1.2rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3); cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .floating-dropdown {
-    position: absolute; bottom: 58px; right: 0; background: #fff;
-    border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    width: 200px; padding: 8px 0; display: none; flex-direction: column;
-  }
-  .floating-dropdown.show { display: flex; }
-  .floating-dropdown button {
-    padding: 8px 14px; text-align: left; background: none; border: none;
-    color: #2c3e50; font-size: 0.85rem; font-weight: 500; cursor: pointer;
+  .sentence-block.show-bn .bengali-drawer,
+  body.show-all-bn .bengali-drawer {
+    display: block;
   }
 
   /* Word Dictionary Popup */
   #popup {
-    position: absolute; z-index: 1000; background: #fff8e1;
-    border: 2px solid #ffc107; border-radius: 12px; padding: 10px 12px;
-    max-width: 280px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    position: fixed; z-index: 1000; background: #fff8e1;
+    border: 2px solid #ffc107; border-radius: 10px; padding: 10px 12px;
+    max-width: 260px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     font-family: 'Noto Sans Bengali', sans-serif; display: none;
+    bottom: 20px; left: 50%; transform: translateX(-50%);
   }
   #popup.show { display: block; }
   #popup .en { font-family: 'Poppins', sans-serif; font-size: 0.95rem; color: #1a5276; font-weight: 600; }
-  #popup .bn { font-size: 1rem; color: #111; margin: 4px 0 8px; font-weight: 600; }
-  #popup .speak-btn { background: #27ae60; color: white; border: none; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; font-weight: 600; }
-  #popup .close-btn { position: absolute; top: 4px; right: 8px; background: none; border: none; font-size: 1.1rem; cursor: pointer; }
+  #popup .bn { font-size: 0.95rem; color: #111; margin: 4px 0 6px; font-weight: 600; }
+  #popup .speak-btn { background: #27ae60; color: white; border: none; padding: 4px 10px; border-radius: 15px; font-size: 0.75rem; cursor: pointer; }
+  #popup .close-btn { position: absolute; top: 4px; right: 8px; background: none; border: none; font-size: 1rem; cursor: pointer; }
 </style>
 </head>
 <body>
 
-<div class="container" id="mainContainer">
+<div class="container">
   <header>
     <h1 id="lessonMainTitle">Lesson 12: My Diary</h1>
-    <p id="lessonSubTitle">Anne Frank • Interactive Reader & Dynamic Translation</p>
+    <p id="lessonSubTitle">Anne Frank • Interactive Reader</p>
   </header>
 
   <div class="lesson-tabs">
-    <button id="tabL12" class="active" onclick="selectLesson(12)">Lesson 12: My Diary</button>
-    <button id="tabL13" onclick="selectLesson(13)">Lesson 13: Ghosts on the Verandah</button>
+    <button id="tabL12" class="active" onclick="selectLesson(12)">Lesson 12</button>
+    <button id="tabL13" onclick="selectLesson(13)">Lesson 13</button>
   </div>
 
   <div class="menu" id="unitMenu"></div>
 
   <div class="controls">
-    <button id="playBtn" class="action-btn">▶ Play Audio</button>
+    <button id="playBtn" class="action-btn">▶ Play</button>
     <button id="pauseBtn" class="action-btn" disabled>⏸ Pause</button>
     <button id="stopBtn" class="action-btn" disabled>⏹ Stop</button>
+    <button id="toggleModeBtn" class="action-btn">🌐 Show All Bengali</button>
     <div class="speed-box">
       <span>Speed</span>
       <input type="range" id="speedSlider" min="0.6" max="1.3" step="0.1" value="0.85">
@@ -241,24 +209,12 @@
     </div>
   </div>
 
-  <div class="status-bar" id="statusBar">Tap any sentence to view Bengali meaning</div>
+  <div class="status-bar" id="statusBar">Tap any line to read Bengali meaning directly below</div>
 
   <div class="content">
-    <div id="introBlock"></div>
     <h2 id="unitTitle">Unit Title</h2>
-    <div class="story" id="storyText"></div>
-    <!-- Hovering sentence subtitle box -->
-    <div class="sentence-bn-tooltip" id="sentenceBnTooltip"></div>
-    <div id="extraContent"></div>
+    <div id="storyContainer"></div>
   </div>
-</div>
-
-<div class="floating-menu-container">
-  <div class="floating-dropdown" id="floatingDropdown">
-    <div style="padding: 4px 14px; font-size: 0.7rem; text-transform: uppercase; color: #888; font-weight:700;">Jump To Section</div>
-    <div id="floatingMenuItems"></div>
-  </div>
-  <button class="floating-btn" id="floatingBtn">⚙</button>
 </div>
 
 <div id="popup">
@@ -269,7 +225,6 @@
 </div>
 
 <script>
-// EXTENSIVE DICTIONARY
 const dictionary = {
   "sunday": "রবিবার", "june": "জুন মাস", "friday": "শুক্রবার", "woke": "জেগে উঠেছিলাম",
   "o'clock": "ঘণ্টার সময়", "wonder": "অবাক হওয়ার বিষয়", "birthday": "জন্মদিন", "allowed": "অনুমতিপ্রাপ্ত",
@@ -289,54 +244,7 @@ const dictionary = {
   "money": "টাকা", "buy": "কেনা", "myths": "পৌরাণিক কাহিনী", "greece": "গ্রীস দেশ",
   "rome": "রোম নগরী", "grand": "অসাধারণ", "called": "ডেকেছিল", "school": "বিদ্যালয়",
   "recess": "টিফিনের সময়", "treated": "আপ্যায়ন করেছিল", "sweet": "মিষ্টি", "biscuits": "বিস্কুট",
-  "back": "ফিরে যাওয়া", "lessons": "পড়াশোনা", "stop": "থামা", "pals": "খাস বন্ধু",
-  "afternoon": "বিকেলবেলা", "showed": "দেখায়েছিল", "film": "চলচ্চিত্র / সিনেমা", "keeper": "রক্ষক",
-  "enjoyed": "উপভোগ করেছিল", "lovely": "সুন্দর / চমৎকার", "time": "সময়", "girls": "মেয়েরা",
-  "boys": "ছেলেরা", "years": "বছরসমূহ", "jewish": "ইহুদি", "secondary": "মাধ্যমিক",
-  "together": "একসাথে", "friendly": "বন্ধুভাবাপন্ন", "different": "আলাদা / ভিন্ন", "written": "লেখা হয়েছে",
-  "few": "কিছু / অল্প", "days": "দিনগুলি", "wanted": "চেয়েছিলাম", "think": "ভাবা",
-  "diary": "ডায়েরি / দিনলিপি", "odd": "অ অদ্ভুত", "idea": "ভাবনা / ধারণা", "keep": "রাখা",
-  "neither": "না এটাও... না ওটাও", "interested": "আগ্রহী", "unbosomings": "মনের কথা প্রকাশ", "thirteen": "তেরো",
-  "girl": "মেয়ে", "matter": "বিষয় / ব্যাপার", "write": "লেখা", "bring": "বাইরে আনা",
-  "buried": "লুকিয়ে থাকা / কবরস্থ", "deep": "গভীর", "heart": "হৃদয়", "saying": "প্রবাদ",
-  "paper": "কাগজ", "patient": "ধৈর্যশীল", "man": "মানুষ", "melancholy": "বিষন্নতা / দুঃখ",
-  "sat": "বসেছিল", "chin": "থুতনি", "hand": "হাত", "feeling": "অনুভূত হওয়া",
-  "bored": "একঘেয়ে / বিরক্ত", "limp": "নিস্তেজ / দুর্বল", "mind": "মন", "stay": "থাকা",
-  "home": "বাড়ি", "doubt": "সন্দেহ", "intend": "ইচ্ছা প্রকাশ করা", "cardboard": "কার্ডবোর্ড / শক্ত কাগজ",
-  "covered": "ঢাকনা দেওয়া", "notebook": "খাতা", "bearing": "বহন করা", "proud": "গর্বিত",
-  "name": "নাম", "unless": "যতক্ষণ না", "find": "খুঁজে পাওয়া", "real": "প্রকৃত / আসল",
-  "cares": "পরোয়া করে", "root": "মূল / কারণ", "reason": "কারণ", "starting": "শুরু করা",
-  "clearly": "স্পষ্টভাবে", "believe": "বিশ্বাস করা", "world": "পৃথিবী", "darling": "প্রিয়",
-  "parents": "বাবা-মা", "sister": "বোন", "sixteen": "ষোল", "people": "মানুষজন",
-  "relations": "আত্মীয়স্বজন", "aunts": "কাকিমা / জেঠিমা", "uncles": "কাকু / মামা", "lack": "অভাব",
-  "same": "একই", "fun": "মজা", "joking": "ঠাট্টা-তামাশা", "outside": "বাইরে",
-  "common": "সাধারণ", "round": "দৈনন্দিন ঘেরাটোপ", "closer": "কাছাকাছি", "trouble": "সমস্যা",
-  "hence": "অতএব / তাই", "enhance": "বৃদ্ধি করা", "eye": "চোখ / দৃষ্টি", "waited": "অপেক্ষা করেছিল",
-  "series": "ক্রম / ধারাবাহিকতা", "bald": "সহজ-সরল / অনাবৃত", "facts": "তথ্যসমূহ", "grasp": "উপলব্ধি করা",
-  "letters": "চিঠিপত্র", "blue": "আকস্মিক (out of the blue)", "albeit": "যদিও", "unwillingly": "অনিচ্ছাসত্ত্বেও",
-  "sketching": "সংক্ষেপে আঁকা বা বলা", "brief": "সংক্ষিপ্ত", "story": "গল্প", "life": "জীবন",
-  "father": "বাবা", "married": "বিয়ে করেছিল", "mother": "মা", "born": "জন্মগ্রহণ করেছিল",
-  "emigrated": "দেশান্তরিত হয়েছিল", "appointed": "নিযুক্ত হয়েছিল", "managing": "ব্যবস্থাপনা", "director": "পরিচালক",
-  "impact": "প্রভাব", "anti-jewish": "ইহুদি-বিরোধী", "laws": "আইনসমূহ", "anxiety": "উদ্বেগ / দুশ্চিন্তা",
-  "escaped": "পালিয়ে গিয়েছিল", "grandmother": "ঠাকুরমা", "died": "মারা গিয়েছিলেন", "present": "উপস্থিত",
-  "thoughts": "চিন্তাভাবনা", "love": "ভালোবাসা", "kindergarten": "শিশু বিদ্যালয়", "continued": "চালিয়ে গিয়েছিল",
-  "form": "শ্রেণী", "good-bye": "বিদায়", "wept": "কেঁদেছিল", "sad": "দুঃখজনক",
-  "memory": "স্মৃতিশক্তি", "stored": "জমা ছিল", "incredible": "অবিশ্বাস্য", "amount": "পরিমাণ",
-  "folklore": "লোককাহিনী", "astonish": "অবাক করা", "spirits": "আত্মা / ভূত", "mischievous": "দুষ্টু / উপদ্রবী",
-  "ghosts": "ভূতসমূহ", "evening": "সন্ধ্যাবেলা", "town": "শহর", "invited": "আমন্ত্রিত",
-  "night": "রাত", "upper-storey": "উপরের তলা", "flat": "ফ্ল্যাট / বাসা", "bazaar": "বাজার",
-  "maid-servant": "ঝিকরানী / কাজের মেয়ে", "bath": "স্নান", "verandah": "বারান্দা", "hair": "চুল",
-  "loose": "খোলা / আলগা", "ought": "উচিত", "knot": "গিট / খোঁপা", "oiled": "তেল মাখানো",
-  "sunset": "সূর্যাস্ত", "attracted": "আকৃষ্ট", "pretty": "সুন্দর", "black": "কালো",
-  "eyes": "চোখগুলি", "tempted": "লোভাতুর / প্রলুব্ধ", "carry": "নিয়ে যাওয়া", "dreadful": "ভয়ানক",
-  "exclaimed": "চিৎকার করে বলল", "hurriedly": "তাড়াতাড়ি", "indoors": "ঘরের ভেতরে", "safe": "নিরাপদ",
-  "string": "দড়ি / সুতো", "cot": "খাটিয়া / খাট", "facing": "মুখোমুখি", "older": "বয়স বেশি",
-  "thirty-two": "বত্রিশ", "mistaken": "ভুল করে ভাবা", "elder": "বড়", "see": "দেখা",
-  "mathematics": "গণিত", "teacher": "শিক্ষক", "locality": "এলাকা / পাড়া", "pupils": "ছাত্রছাত্রী",
-  "age": "বয়স", "desk": "ডেস্ক / পড়ার টেবিল", "corner": "কোণ", "fetch": "আনা",
-  "cupboard": "আলমারি", "far": "দূরবর্তী", "end": "শেষ প্রান্ত", "lazy": "অলসে",
-  "move": "নড়াচড়া করা", "seat": "বসার জায়গা", "merely": "কেবলমাত্র", "stretched": "প্রসারিত করেছিল",
-  "touching": "স্পর্শ করা", "realised": "বুঝতে পেরেছিল", "agility": "ক্ষিপ্রতা / চপলতা"
+  "back": "ফিরে যাওয়া", "lessons": "পড়াশোনা", "stop": "থামা", "pals": "খাস বন্ধু"
 };
 
 const lesson12Data = {
@@ -344,8 +252,7 @@ const lesson12Data = {
   author: "Anne Frank",
   units: [
     {
-      title: "Introduction & Unit I",
-      startBlock: `<div class="section-block"><h3>Let’s start</h3><p>Excerpts from <em>Anne Frank: The Diary of a Young Girl</em>. Anne Frank was born on June 12, 1929 in Frankfurt, Germany.</p></div>`,
+      title: "Unit I",
       sentences: [
         { en: "Sunday, 14 June, 1942.", bn: "রবিবার, ১৪ই জুন, ১৯৪২।" },
         { en: "On Friday, June 12th, I woke up at six o'clock and no wonder, it was my birthday.", bn: "শুক্রবার, ১২ই জুন, আমি সকাল ছয়টায় জেগে উঠেছিলাম এবং এতে অবাক হওয়ার কিছু নেই, কারণ এটা ছিল আমার জন্মদিন।" },
@@ -364,30 +271,11 @@ const lesson12Data = {
     },
     {
       title: "Unit II",
-      startBlock: ``,
       sentences: [
         { en: "Monday, 15 June, 1942.", bn: "সোমবার, ১৫ই জুন, ১৯৪২।" },
         { en: "I had my birthday party on Sunday afternoon.", bn: "রবিবার বিকেলে আমার জন্মদিনের পার্টি ছিল।" },
         { en: "We showed a film The Lighthouse Keeper, which my school friends thoroughly enjoyed.", bn: "আমরা দ্য লাইটহাউস কিপার নামে একটি সিনেমা দেখিয়েছিলাম, যা আমার স্কুলের বন্ধুরা দারুণ উপভোগ করেছিল।" },
-        { en: "We had a lovely time. There were lots of girls and boys.", bn: "আমরা খুব চমৎকার সময় কাটিয়েছিলাম। সেখানে অনেক ছেলে-মেয়ে এসেছিল।" },
-        { en: "For years Lies Goosens and Sanne Houtman have been my best friends.", bn: "বছরের পর বছর ধরে লাইস গূসেন্স এবং সান হাউটম্যান আমার সেরা বন্ধু ছিল।" },
-        { en: "Since then I've got to know Jopie de Waal at the Jewish Secondary School.", bn: "তারপর থেকে আমি জুয়িশ সেকেন্ডারি স্কুলে জোপি ডি ওয়ালের সাথে পরিচিত হয়েছি।" },
-        { en: "We are together a lot and she is now my best friend.", bn: "আমরা অনেক সময় একসাথে কাটাই এবং সে এখন আমার সেরা বন্ধু।" }
-      ]
-    },
-    {
-      title: "Unit III",
-      startBlock: ``,
-      sentences: [
-        { en: "Saturday, 20th June, 1942.", bn: "শনিবার, ২০শে জুন, ১৯৪২।" },
-        { en: "I haven't written for a few days because I wanted first of all to think about my diary.", bn: "আমি কয়েকদিন কিছু লিখিনি কারণ আমি প্রথমত আমার ডায়েরি সম্পর্কে ভেবে দেখতে চেয়েছিলাম।" },
-        { en: "It's an odd idea for someone like me to keep a diary; not only because I have never done so before, but because it seems to me that neither I – nor for that matter anyone else – will be interested in the unbosomings of a thirteen-year-old school girl.", bn: "আমার মতো কারো জন্য ডায়েরি রাখা একটি অদ্ভুত ভাবনা; কারণ আমার মনে হয় কোনো ১৩ বছরের স্কুলছাত্রীর মনের কথা শুনতে কারো আগ্রহ থাকবে না।" },
-        { en: "Still, what does that matter? I want to write, but more than that, I want to bring out all kinds of things that lie buried deep in my heart.", bn: "তবু, তাতে কী আসে যায়? আমি আমার হৃদয়ের গভীরে লুকিয়ে থাকা সমস্ত অনুভূতি প্রকাশ করতে চাই।" },
-        { en: "There is a saying that 'paper is more patient than man'; it came back to me on one of my slightly melancholy days, while I sat chin in hand, feeling too bored and limp even to make up my mind whether to go out or stay at home.", bn: "একটি প্রবাদ আছে যে 'মানুষের চেয়ে কাগজ বেশি ধৈর্যশীল'; একটি বিষন্ন দিনে থুতনিতে হাত দিয়ে বসে থাকার সময় এটি আমার মনে পড়েছিল।" },
-        { en: "Yes, there is no doubt that paper is patient and I don't intend to show this cardboard-covered notebook, bearing the proud name of 'diary' to anyone.", bn: "হ্যাঁ, এতে কোনো সন্দেহ নেই যে কাগজ ধৈর্যশীল এবং 'ডায়েরি' নামযুক্ত এই খাতাটি আমি কাউকে দেখাতে চাই না।" },
-        { en: "Unless I find a real friend, boy or girl, probably nobody cares. And now I come to the root of the matter, the reason for my starting a diary.", bn: "যতক্ষণ না আমি একজন প্রকৃত বন্ধু পাচ্ছি, সম্ভবত কেউই পরোয়া করবে না। আর তাই আমি এই ডায়েরি শুরু করেছি।" },
-        { en: "It is that I have no such real friend.", bn: "কারণটা হলো আমার সেরকম কোনো সত্যিকারের বন্ধু নেই।" },
-        { en: "Hence, this diary. In order to enhance in my mind's eye the picture of the friend for whom I have waited so long, I don't want to set down a series of bald facts in a diary like most people do, but I want this diary itself to be my friend, and I shall call my friend Kitty.", bn: "তাই এই ডায়েরি। আমার কাঙ্ক্ষিত বন্ধুর ছবি স্পষ্ট করার জন্য, আমি ডায়েরিকেই আমার বন্ধু বানাতে চাই, আর এর নাম দিলাম 'কিটি'।" }
+        { en: "We had a lovely time. There were lots of girls and boys.", bn: "আমরা খুব চমৎকার সময় কাটিয়েছিলাম। সেখানে অনেক ছেলে-মেয়ে এসেছিল।" }
       ]
     }
   ]
@@ -399,22 +287,14 @@ const lesson13Data = {
   units: [
     {
       title: "Unit I",
-      startBlock: `<div class="section-block"><h3>Let’s start</h3><p>An edited extract from Ruskin Bond's famous ghost story collection.</p></div>`,
       sentences: [
-        { en: "Anil's mother's memory was stored with an incredible amount of folklore, and she would sometimes astonish us with her stories of spirits and mischievous ghosts.", bn: "অনিলের মায়ের স্মৃতি লোককাহিনীর এক অবিশ্বাস্য সম্ভারে পূর্ণ ছিল, এবং তিনি মাঝে মাঝে আমাদের ভূতের গল্পে অবাক করতেন।" },
-        { en: "One evening, when Anil's father was out of town, and Kamal and I had been invited to stay the night at Anil's upper-storey flat in the bazaar, his mother began to tell us about the various types of ghosts she had known.", bn: "এক সন্ধ্যায়, যখন অনিলের বাবা শহরের বাইরে ছিলেন এবং কমল ও আমাকে অনিলের ফ্ল্যাটে রাতে থাকার নিমন্ত্রণ জানানো হয়েছিল, তার মা ভূতের গল্প বলতে শুরু করেন।" },
-        { en: "Mulia, the maid-servant, having just taken a bath, came out on the verandah, with her hair loose.", bn: "ঝিকরানী মুলিয়া স্নান সেরে খোলা চুলে বারান্দায় এল।" },
-        { en: "\"My girl, you ought not to leave your hair loose like that,\" said Anil's mother. \"It is better to tie a knot in it.\"", bn: "\"মেয়ে, তোমার ওভাবে চুল খোলা রাখা উচিত নয়,\" অনিলের মা বললেন। \"চুলে গিট বেঁধে রাখা ভালো।\"" },
-        { en: "\"Never mind, but you should not leave your hair loose towards sunset. There are spirits called Jinns who are attracted by long hair and pretty black eyes like yours. They may be tempted to carry you away!\"", bn: "\"তা হোক, সূর্যাস্তের সময় চুল খোলা রাখতে নেই। জীন নামের আত্মারা লম্বা চুল ও সুন্দর কালো চোখের দিকে আকৃষ্ট হয়। তারা তোমাকে তুলে নিয়ে যেতে পারে!\"" },
-        { en: "\"How dreadful!\" exclaimed Mulia, hurriedly tying a knot in her hair, and going indoors to be on the safe side.", bn: "\"কী ভয়ানক!\" মুলিয়া চিৎকার করে উঠে তাড়াতাড়ি চুলে গিট বেঁধে ভেতরে চলে গেল।" },
-        { en: "There was a Mathematics teacher in our locality, whose pupils were about the same age as you. One of the boys was very good at his lessons. One day, while he sat at his desk in a corner of the classroom, the teacher asked him to fetch a book from the cupboard which stood at the far end of the room.", bn: "আমাদের এলাকার এক গণিত শিক্ষকের গল্প এটি। একদিন তিনি এক ছেলেকে দূরবর্তী আলমারি থেকে বই আনতে বললেন।" },
-        { en: "The boy, who felt lazy that morning, didn't move from his seat. He merely stretched out his hand, took the book from the cupboard, and handed it to the teacher. Everyone was astonished, because the boy's arm had stretched about four yards before touching the book! They realised that he was a Jinn; that was the reason for his being so good at games and exercises which required great agility.", bn: "ছেলেটি অলস অনুভব করে নিজের জায়গা থেকে না নড়ে চার গজ হাত বাড়িয়ে বই এনে দিল! সবাই বুঝল সে একজন জীন।" }
+        { en: "Anil's mother's memory was stored with an incredible amount of folklore.", bn: "অনিলের মায়ের স্মৃতি লোককাহিনীর এক অবিশ্বাস্য সম্ভারে পূর্ণ ছিল।" },
+        { en: "She would sometimes astonish us with her stories of spirits and mischievous ghosts.", bn: "তিনি মাঝে মাঝে আমাদের ভূতের গল্পে অবাক করতেন।" }
       ]
     }
   ]
 };
 
-// Global Variables
 let currentLessonData = lesson12Data;
 let currentUnitIdx = 0;
 let currentSentence = 0;
@@ -422,14 +302,14 @@ let isPlaying = false;
 let isPaused = false;
 let englishVoice = null;
 let speechRate = 0.85;
+let showAllBn = false;
 
-// DOM Elements
-const storyDiv = document.getElementById('storyText');
+const storyContainer = document.getElementById('storyContainer');
 const statusBar = document.getElementById('statusBar');
-const sentenceBnTooltip = document.getElementById('sentenceBnTooltip');
 const playBtn = document.getElementById('playBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const stopBtn = document.getElementById('stopBtn');
+const toggleModeBtn = document.getElementById('toggleModeBtn');
 const speedSlider = document.getElementById('speedSlider');
 const speedValue = document.getElementById('speedValue');
 const popup = document.getElementById('popup');
@@ -437,10 +317,7 @@ const popupEn = document.getElementById('popupEn');
 const popupBn = document.getElementById('popupBn');
 const popupSpeak = document.getElementById('popupSpeak');
 const popupClose = document.getElementById('popupClose');
-const mainContainer = document.getElementById('mainContainer');
 const unitTitle = document.getElementById('unitTitle');
-const introBlock = document.getElementById('introBlock');
-const extraContent = document.getElementById('extraContent');
 const unitMenu = document.getElementById('unitMenu');
 
 function selectLesson(num) {
@@ -450,10 +327,9 @@ function selectLesson(num) {
   
   currentLessonData = (num === 12) ? lesson12Data : lesson13Data;
   document.getElementById('lessonMainTitle').textContent = currentLessonData.title;
-  document.getElementById('lessonSubTitle').textContent = currentLessonData.author + " • Complete Text Reader";
+  document.getElementById('lessonSubTitle').textContent = currentLessonData.author + " • Interactive Reader";
   
   renderUnitMenu();
-  renderFloatingMenu();
   switchUnit(0);
 }
 
@@ -468,96 +344,56 @@ function renderUnitMenu() {
   });
 }
 
-function renderFloatingMenu() {
-  const container = document.getElementById('floatingMenuItems');
-  container.innerHTML = '';
-  currentLessonData.units.forEach((u, idx) => {
-    const btn = document.createElement('button');
-    btn.textContent = u.title;
-    btn.onclick = () => {
-      switchUnit(idx);
-      document.getElementById('floatingDropdown').classList.remove('show');
-    };
-    container.appendChild(btn);
-  });
-}
-
 function switchUnit(idx) {
   stopAll();
   currentUnitIdx = idx;
-  
   Array.from(unitMenu.children).forEach((btn, i) => {
     btn.classList.toggle('active', i === idx);
   });
-
   const unit = currentLessonData.units[idx];
   unitTitle.textContent = unit.title;
-  introBlock.innerHTML = unit.startBlock || '';
-  extraContent.innerHTML = '';
-
   buildStory();
-  hideHoverTooltip();
-  statusBar.textContent = `Tap any sentence to read Bengali meaning`;
 }
 
 function buildStory() {
   const unit = currentLessonData.units[currentUnitIdx];
-  let html = '';
+  storyContainer.innerHTML = '';
   
   unit.sentences.forEach((s, sIdx) => {
-    html += `<span class="sentence" data-sidx="${sIdx}">`;
+    const block = document.createElement('div');
+    block.className = 'sentence-block';
+    block.dataset.sidx = sIdx;
+
+    let englishHtml = '<div class="english-line">';
     const tokens = s.en.match(/[\w'’]+|[.,!?;:"“”()]|\s+/g) || [];
     tokens.forEach(tok => {
       if (tok.trim() && /[\w'’]/.test(tok)) {
         const clean = tok.toLowerCase().replace(/[’']/g, "");
         const hasMeaning = dictionary.hasOwnProperty(clean);
         const cls = hasMeaning ? "word has-meaning" : "word";
-        html += `<span class="${cls}" data-word="${clean}">${tok}</span>`;
+        englishHtml += `<span class="${cls}" data-word="${clean}">${tok}</span>`;
       } else {
-        html += tok;
+        englishHtml += tok;
       }
     });
-    html += '</span> ';
-  });
-  storyDiv.innerHTML = html;
+    englishHtml += '</div>';
 
-  // Word Dictionary Click Listeners
-  document.querySelectorAll('.word').forEach(el => {
-    el.addEventListener('click', function(e) {
-      e.stopPropagation();
-      showWordPopup(this);
-    });
-  });
+    const bengaliHtml = `<div class="bengali-drawer">${s.bn}</div>`;
+    block.innerHTML = englishHtml + bengaliHtml;
 
-  // Sentence Mouse & Touch/Tap Listeners
-  document.querySelectorAll('.sentence').forEach(sentEl => {
-    // Desktop Hover
-    sentEl.addEventListener('mouseenter', function() {
-      if (!isPlaying) {
-        const sIdx = parseInt(this.dataset.sidx);
-        const u = currentLessonData.units[currentUnitIdx];
-        if (u && u.sentences[sIdx]) {
-          positionHoverTooltip(this, u.sentences[sIdx].bn);
-        }
+    block.addEventListener('click', (e) => {
+      if (e.target.classList.contains('word')) {
+        e.stopPropagation();
+        showWordPopup(e.target);
+        return;
       }
-    });
-    sentEl.addEventListener('mouseleave', function() {
-      if (!isPlaying) {
-        hideHoverTooltip();
-      }
+      document.querySelectorAll('.sentence-block').forEach(b => {
+        if (b !== block) b.classList.remove('show-bn');
+      });
+      block.classList.toggle('show-bn');
     });
 
-    // Mobile Direct Tap / Click for immediate translation display close to sentence
-    sentEl.addEventListener('click', function(e) {
-      if (e.target.classList.contains('word')) return; // Let word dictionary popup handle word clicks
-      const sIdx = parseInt(this.dataset.sidx);
-      const u = currentLessonData.units[currentUnitIdx];
-      if (u && u.sentences[sIdx]) {
-        clearHighlights();
-        this.classList.add('active');
-        positionHoverTooltip(this, u.sentences[sIdx].bn);
-      }
-    });
+    storyContainer.appendChild(block);
   });
 }
 
@@ -569,63 +405,21 @@ function loadVoices() {
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
-function clearHighlights() {
-  document.querySelectorAll('.sentence').forEach(s => s.classList.remove('active'));
-}
-
-// Optimized sentence translation positioning right below sentence for mobile screens
-function positionHoverTooltip(sentEl, text) {
-  if (!sentEl || !text) {
-    hideHoverTooltip();
-    return;
-  }
-  sentenceBnTooltip.textContent = text;
-
-  const rect = sentEl.getBoundingClientRect();
-  const containerRect = mainContainer.getBoundingClientRect();
-  const isMobile = window.innerWidth <= 600;
-
-  // Very tight top offset directly beneath text line (+2px on mobile)
-  let top = rect.bottom - containerRect.top + (isMobile ? 2 : 4);
-  let left = rect.left - containerRect.left;
-
-  // Keep tooltip strictly bounded inside container padding
-  const maxAllowedWidth = containerRect.width - 16;
-  sentenceBnTooltip.style.maxWidth = maxAllowedWidth + 'px';
-
-  if (left + 280 > containerRect.width) {
-    left = Math.max(8, containerRect.width - 290);
-  }
-  if (left < 8) left = 8;
-
-  sentenceBnTooltip.style.top = top + 'px';
-  sentenceBnTooltip.style.left = left + 'px';
-  sentenceBnTooltip.classList.add('visible');
-}
-
-function hideHoverTooltip() {
-  sentenceBnTooltip.classList.remove('visible');
-}
-
 function highlightSentence(sIdx) {
-  clearHighlights();
-  const sentEl = document.querySelector(`.sentence[data-sidx="${sIdx}"]`);
-  if (sentEl) {
-    sentEl.classList.add('active');
-    sentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
-    const u = currentLessonData.units[currentUnitIdx];
-    if (u && u.sentences[sIdx]) {
-      setTimeout(() => positionHoverTooltip(sentEl, u.sentences[sIdx].bn), 80);
+  document.querySelectorAll('.sentence-block').forEach((b, i) => {
+    const isActive = (i === sIdx);
+    b.classList.toggle('active', isActive);
+    b.classList.toggle('show-bn', isActive);
+    if (isActive) {
+      b.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }
+  });
 }
 
 function speakText(text, onEnd) {
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.voice = englishVoice;
-  u.lang = englishVoice ? englishVoice.lang : 'en-US';
   u.rate = speechRate;
   u.onend = () => { if (onEnd) onEnd(); };
   u.onerror = () => { if (onEnd) onEnd(); };
@@ -634,38 +428,19 @@ function speakText(text, onEnd) {
 
 function showWordPopup(el) {
   const word = el.dataset.word;
-  const meaning = dictionary[word] || "অর্থ: বাক্যভিত্তিক অর্থ বুঝতে টেক্সটটি লক্ষ করুন।";
-
+  const meaning = dictionary[word] || "অর্থ: বাক্যভিত্তিক অর্থ নিচের বক্সে দেখে নিন।";
   popupEn.textContent = word.charAt(0).toUpperCase() + word.slice(1);
   popupBn.textContent = meaning;
-
-  const rect = el.getBoundingClientRect();
-  const containerRect = mainContainer.getBoundingClientRect();
-  let top = rect.bottom - containerRect.top + 6;
-  let left = Math.max(8, rect.left - containerRect.left - 10);
-
-  popup.style.top = top + 'px';
-  popup.style.left = left + 'px';
   popup.classList.add('show');
 }
 
-function hidePopup() { popup.classList.remove('show'); }
+popupClose.addEventListener('click', () => popup.classList.remove('show'));
+popupSpeak.addEventListener('click', () => speakText(popupEn.textContent));
 
-popupClose.addEventListener('click', hidePopup);
-popupSpeak.addEventListener('click', () => {
-  speakText(popupEn.textContent);
-});
-
-document.addEventListener('click', (e) => {
-  if (!popup.contains(e.target) && !e.target.classList.contains('word') && e.target.id !== 'floatingBtn') {
-    hidePopup();
-    document.getElementById('floatingDropdown').classList.remove('show');
-  }
-});
-
-document.getElementById('floatingBtn').addEventListener('click', (e) => {
-  e.stopPropagation();
-  document.getElementById('floatingDropdown').classList.toggle('show');
+toggleModeBtn.addEventListener('click', () => {
+  showAllBn = !showAllBn;
+  document.body.classList.toggle('show-all-bn', showAllBn);
+  toggleModeBtn.textContent = showAllBn ? "🙈 Hide All Bengali" : "🌐 Show All Bengali";
 });
 
 function playNext() {
@@ -673,14 +448,12 @@ function playNext() {
   if (!isPlaying || isPaused) return;
   if (currentSentence >= unit.sentences.length) {
     stopAll();
-    statusBar.textContent = 'Finished reading Section ✓';
-    hideHoverTooltip();
+    statusBar.textContent = 'Finished reading section ✓';
     return;
   }
-
   const s = unit.sentences[currentSentence];
   highlightSentence(currentSentence);
-  statusBar.textContent = `Reading Sentence ${currentSentence + 1} of ${unit.sentences.length}`;
+  statusBar.textContent = `Reading ${currentSentence + 1} of ${unit.sentences.length}`;
 
   speakText(s.en, () => {
     if (!isPlaying || isPaused) return;
@@ -688,7 +461,7 @@ function playNext() {
       if (!isPlaying || isPaused) return;
       currentSentence++;
       playNext();
-    }, 400);
+    }, 300);
   });
 }
 
@@ -698,7 +471,6 @@ function play() {
     speechSynthesis.resume();
     playBtn.disabled = true;
     pauseBtn.disabled = false;
-    statusBar.textContent = 'Resumed playback';
     return;
   }
   speechSynthesis.cancel();
@@ -716,7 +488,6 @@ function pause() {
   speechSynthesis.pause();
   playBtn.disabled = false;
   pauseBtn.disabled = true;
-  statusBar.textContent = 'Paused';
 }
 
 function stopAll() {
@@ -724,13 +495,14 @@ function stopAll() {
   isPaused = false;
   speechSynthesis.cancel();
   currentSentence = 0;
-  clearHighlights();
-  hideHoverTooltip();
-  hidePopup();
+  document.querySelectorAll('.sentence-block').forEach(b => {
+    b.classList.remove('active');
+    if (!showAllBn) b.classList.remove('show-bn');
+  });
   playBtn.disabled = false;
   pauseBtn.disabled = true;
   stopBtn.disabled = true;
-  statusBar.textContent = 'Tap any sentence to view Bengali meaning';
+  statusBar.textContent = 'Tap any line to read Bengali meaning directly below';
 }
 
 speedSlider.addEventListener('input', () => {
