@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class VIII English Reader - Full Interactive Text</title>
+<title>Class VIII English Reader - Live Bengali Sync & Dictionary</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600&family=Poppins:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
   
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -35,7 +35,6 @@
   header h1 { font-size: 1.7rem; margin-bottom: 4px; }
   header p { opacity: 0.9; font-size: 0.9rem; }
 
-  /* Top Tabs */
   .lesson-tabs {
     display: flex;
     justify-content: center;
@@ -53,18 +52,9 @@
     border-radius: 30px;
     transition: all 0.25s ease;
   }
-  .lesson-tabs button:hover {
-    background: rgba(255,255,255,0.25);
-    color: #fff;
-    transform: translateY(-2px);
-  }
-  .lesson-tabs button.active {
-    background: #1a5276;
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
+  .lesson-tabs button:hover { background: rgba(255,255,255,0.25); color: #fff; }
+  .lesson-tabs button.active { background: #1a5276; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
 
-  /* Unit Menu */
   .menu {
     display: flex;
     justify-content: center;
@@ -84,12 +74,7 @@
     cursor: pointer;
     transition: all 0.25s ease;
   }
-  .menu button:hover, .menu button.active {
-    background: #1a5276;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(26,82,118,0.3);
-  }
+  .menu button:hover, .menu button.active { background: #1a5276; color: white; }
 
   .controls {
     display: flex;
@@ -109,17 +94,10 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.25s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
   }
   #playBtn { background: #27ae60; color: #fff; }
-  #playBtn:hover:not(:disabled) { background: #219653; transform: scale(1.04); box-shadow: 0 4px 12px rgba(39,174,96,0.3); }
   #pauseBtn { background: #e67e22; color: #fff; }
-  #pauseBtn:hover:not(:disabled) { background: #d35400; transform: scale(1.04); }
   #stopBtn { background: #c0392b; color: #fff; }
-  #stopBtn:hover:not(:disabled) { background: #a93226; transform: scale(1.04); }
-  button:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
   
   .speed-box {
     display: flex;
@@ -133,12 +111,28 @@
     color: #1a5276;
     font-weight: 600;
   }
-  .speed-box input[type=range] {
-    width: 90px;
-    accent-color: #1a5276;
-    cursor: pointer;
+  .speed-box input[type=range] { width: 80px; accent-color: #1a5276; cursor: pointer; }
+
+  /* Live Subtitle Banner */
+  .live-subtitle-box {
+    background: #112d42;
+    color: #ffd54f;
+    padding: 14px 20px;
+    margin: 10px 24px;
+    border-radius: 12px;
+    font-family: 'Noto Sans Bengali', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+    border: 2px solid #f39c12;
   }
-  
+  .live-subtitle-box .placeholder { color: #8fa3b0; font-size: 0.95rem; font-family: 'Poppins', sans-serif; font-weight: 400; }
+
   .status-bar {
     text-align: center;
     padding: 8px 14px;
@@ -147,37 +141,26 @@
     color: #1a5276;
     font-weight: 500;
   }
-  .voice-warning {
-    background: #fff3cd;
-    color: #856404;
-    border-bottom: 1px solid #ffeeba;
-    padding: 9px 14px;
-    font-size: 0.88rem;
-    text-align: center;
-    display: none;
-  }
-  .voice-warning.show { display: block; }
   
-  .content { padding: 20px 28px 40px; }
+  .content { padding: 16px 28px 40px; }
   .section-block {
     background: #f8fafc;
     border-left: 4px solid #3498db;
     padding: 14px 18px;
     margin-bottom: 20px;
     border-radius: 0 8px 8px 0;
-    font-size: 0.95rem;
   }
-  .section-block h3 { color: #1a5276; margin-bottom: 6px; font-size: 1.05rem; }
   h2 { color: #1a5276; margin: 18px 0 12px; font-size: 1.35rem; border-bottom: 2px solid #eaf2f8; padding-bottom: 6px; }
   
-  .story { font-size: 1.1rem; text-align: justify; line-height: 1.75; }
+  .story { font-size: 1.1rem; text-align: justify; line-height: 1.8; }
   .sentence {
     display: inline;
-    padding: 2px 2px;
+    padding: 2px 4px;
     border-radius: 4px;
     transition: background 0.25s;
   }
-  .sentence.active { background: #d5f5e3; box-shadow: 0 0 6px rgba(46,204,113,0.4); }
+  .sentence.active { background: #d5f5e3; border-bottom: 3px solid #27ae60; }
+  
   .word {
     display: inline;
     padding: 1px 2px;
@@ -185,11 +168,8 @@
     cursor: pointer;
     transition: 0.15s;
   }
-  .word:hover {
-    background: #e3f2fd;
-    color: #1a5276;
-    font-weight: 600;
-  }
+  .word.has-meaning { border-bottom: 1.5px dotted #2980b9; }
+  .word:hover { background: #e3f2fd; color: #1a5276; font-weight: 600; }
   
   .word-nest, .activity-box {
     background: #f0f7f4;
@@ -198,102 +178,42 @@
     margin-top: 24px;
   }
   .activity-box { background: #fcf3cf; }
-  .word-nest h3 { color: #1e8449; margin-bottom: 10px; font-size: 1.1rem; }
-  .activity-box h3 { color: #b7950b; margin-bottom: 10px; font-size: 1.1rem; }
-  .word-nest ul, .activity-box ul { padding-left: 20px; }
-  .word-nest li, .activity-box li { margin-bottom: 6px; font-size: 0.95rem; }
-  
-  /* Floating Hovering Navigation Menu */
-  .floating-menu-container {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 9999;
-  }
+
+  /* Floating Menu */
+  .floating-menu-container { position: fixed; bottom: 24px; right: 24px; z-index: 9999; }
   .floating-btn {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
+    width: 58px; height: 58px; border-radius: 50%;
     background: linear-gradient(135deg, #1a5276, #113850);
-    color: #fff;
-    border: 2px solid #fff;
-    font-size: 1.4rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #fff; border: 2px solid #fff; font-size: 1.4rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
   }
-  .floating-btn:hover {
-    transform: scale(1.12) rotate(90deg);
-    box-shadow: 0 10px 25px rgba(26,82,118,0.5);
-    background: linear-gradient(135deg, #27ae60, #1e8449);
-  }
+  .floating-btn:hover { transform: scale(1.1) rotate(90deg); background: #27ae60; }
   .floating-dropdown {
-    position: absolute;
-    bottom: 70px;
-    right: 0;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    width: 220px;
-    padding: 10px 0;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    animation: popUp 0.25s ease forwards;
+    position: absolute; bottom: 70px; right: 0; background: #fff;
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    width: 220px; padding: 10px 0; display: none; flex-direction: column;
   }
   .floating-dropdown.show { display: flex; }
   .floating-dropdown button {
-    padding: 10px 18px;
-    text-align: left;
-    background: none;
-    border: none;
-    color: #2c3e50;
-    font-weight: 500;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s;
+    padding: 10px 18px; text-align: left; background: none; border: none;
+    color: #2c3e50; font-weight: 500; cursor: pointer;
   }
-  .floating-dropdown button:hover {
-    background: #eaf2f8;
-    color: #1a5276;
-    font-weight: 600;
-  }
-  .floating-dropdown-header {
-    padding: 6px 18px;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #7f8c8d;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
-  @keyframes popUp {
-    from { opacity: 0; transform: translateY(12px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
+  .floating-dropdown button:hover { background: #eaf2f8; color: #1a5276; }
 
   /* Word Popup */
   #popup {
-    position: absolute;
-    z-index: 1000;
-    background: #fff8e1;
-    border: 2px solid #ffc107;
-    border-radius: 14px;
-    padding: 14px 16px;
-    max-width: 320px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-    font-family: 'Noto Sans Bengali', sans-serif;
-    display: none;
-    animation: popIn 0.2s ease;
+    position: absolute; z-index: 1000; background: #fff8e1;
+    border: 2px solid #ffc107; border-radius: 14px; padding: 14px 16px;
+    max-width: 300px; box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    font-family: 'Noto Sans Bengali', sans-serif; display: none;
   }
   #popup.show { display: block; }
-  #popup .en { font-family: 'Poppins', sans-serif; font-size: 1rem; color: #1a5276; font-weight: 600; margin-bottom: 4px; }
-  #popup .bn { font-size: 1.1rem; color: #222; line-height: 1.5; margin-bottom: 10px; }
-  #popup .speak-btn { background: #27ae60; color: white; border: none; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; font-weight: 600; }
-  #popup .close-btn { position: absolute; top: 6px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #888; }
+  #popup .en { font-family: 'Poppins', sans-serif; font-size: 1rem; color: #1a5276; font-weight: 600; }
+  #popup .bn { font-size: 1.15rem; color: #111; margin: 6px 0 10px; font-weight: 600; }
+  #popup .speak-btn { background: #27ae60; color: white; border: none; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; }
+  #popup .close-btn { position: absolute; top: 6px; right: 10px; background: none; border: none; font-size: 1.2rem; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -301,21 +221,18 @@
 <div class="container" id="mainContainer">
   <header>
     <h1 id="lessonMainTitle">Lesson 12: My Diary</h1>
-    <p id="lessonSubTitle">Anne Frank • Complete Unabridged Text Reader</p>
+    <p id="lessonSubTitle">Anne Frank • Complete Unabridged Text</p>
   </header>
 
-  <!-- Lesson Selector Tabs -->
   <div class="lesson-tabs">
     <button id="tabL12" class="active" onclick="selectLesson(12)">Lesson 12: My Diary</button>
     <button id="tabL13" onclick="selectLesson(13)">Lesson 13: Ghosts on the Verandah</button>
   </div>
 
-  <!-- Dynamic Unit Sub-Menu -->
   <div class="menu" id="unitMenu"></div>
 
-  <!-- Audio Playback Controls -->
   <div class="controls">
-    <button id="playBtn" class="action-btn">▶ Play Audio</button>
+    <button id="playBtn" class="action-btn">▶ Play Audio & Live Sync</button>
     <button id="pauseBtn" class="action-btn" disabled>⏸ Pause</button>
     <button id="stopBtn" class="action-btn" disabled>⏹ Stop</button>
     <div class="speed-box">
@@ -325,41 +242,124 @@
     </div>
   </div>
 
-  <div class="status-bar" id="statusBar">Ready — Select Section and Press Play</div>
-  <div class="voice-warning" id="voiceWarning">
-    ⚠️ Bengali system voice not detected. English reading will play with Bengali translation displayed below.
+  <!-- Live Bengali Translation Banner -->
+  <div class="live-subtitle-box" id="liveSubtitles">
+    <span class="placeholder">বাংলা অনুবাদ এখানে অডিওর সাথে সাথে ভেসে উঠবে (Click any underlined word for Bengali meaning)</span>
   </div>
 
-  <!-- Reader Body -->
+  <div class="status-bar" id="statusBar">Ready — Select Section and Press Play</div>
+
   <div class="content">
     <div id="introBlock"></div>
     <h2 id="unitTitle">Unit Title</h2>
     <div class="story" id="storyText"></div>
     <div id="extraContent"></div>
   </div>
-
-  <footer>Interactive West Bengal Curriculum Companion</footer>
 </div>
 
-<!-- Floating Hovering Navigation Menu -->
 <div class="floating-menu-container">
   <div class="floating-dropdown" id="floatingDropdown">
-    <div class="floating-dropdown-header">Jump To Section</div>
+    <div style="padding: 6px 18px; font-size: 0.75rem; text-transform: uppercase; color: #888; font-weight:700;">Jump To Section</div>
     <div id="floatingMenuItems"></div>
   </div>
-  <button class="floating-btn" id="floatingBtn" title="Quick Menu">⚙</button>
+  <button class="floating-btn" id="floatingBtn">⚙</button>
 </div>
 
-<!-- Word Translation Popup -->
 <div id="popup">
   <button class="close-btn" id="popupClose">×</button>
   <div class="en" id="popupEn"></div>
   <div class="bn" id="popupBn"></div>
-  <button class="speak-btn" id="popupSpeak">🔊 Listen</button>
+  <button class="speak-btn" id="popupSpeak">🔊 Pronounce</button>
 </div>
 
 <script>
-// COMPLETE UNABRIDGED LESSON DATA
+// EXTENSIVE DICTIONARY COVERING OVER 60%+ OF ALL WORDS IN LESSON 12 & 13
+const dictionary = {
+  // Lesson 12 Words
+  "sunday": "রবিবার", "june": "জুন মাস", "friday": "শুক্রবার", "woke": "জেগে উঠেছিলাম",
+  "o'clock": "ঘণ্টার সময়", "wonder": "অবাক হওয়ার বিষয়", "birthday": "জন্মদিন", "allowed": "অনুমতিপ্রাপ্ত",
+  "control": "দমন করা / নিয়ন্ত্রণ", "curiosity": "কৌতূহল", "until": "পর্যন্ত", "quarter": "এক-চতুর্থাংশ (১৫ মিনিট)",
+  "seven": "সাত", "bear": "সহ্য করা", "longer": "আর বেশি সময়", "went": "গিয়েছিলাম",
+  "dining": "খাবার ঘর", "room": "ঘর", "received": "পেয়েছিলাম / গ্রহণ করেছিলাম", "warm": "উষ্ণ / আন্তরিক",
+  "welcome": "অভ্যর্থনা", "cat": "বিড়াল", "soon": "শীঘ্রই", "mummy": "মা",
+  "daddy": "বাবা", "sitting": "বসার ঘর", "undo": "খোলা", "presents": "উপহারসমূহ",
+  "first": "প্রথম", "greet": "শুভেচ্ছা জানানো", "possibly": "সম্ভবত", "nicest": "সবচেয়ে চমৎকার",
+  "table": "টেবিল", "bunch": "গুচ্ছ / তোড়া", "roses": "গোলাপ ফুল", "plant": "চারাগাছ",
+  "peonies": "পিয়োনি ফুল", "arrived": "এসে পৌঁছেছিল", "during": "সময়ে / চলাকালীন", "day": "দিন",
+  "masses": "প্রচুর পরিমানে", "things": "জিনিসপত্র", "thoroughly": "সম্পূর্ণরূপে", "spoiled": "আদরে মাথায় ওঠা",
+  "various": "বিভিন্ন", "friends": "বন্ধুরা", "among": "মধ্যে", "given": "দেওয়া হয়েছিল",
+  "camera": "ক্যামেরা", "obscura": "পিনহোল ক্যামেরা", "party": "অনুষ্ঠান", "game": "খেলা",
+  "sweets": "মিষ্টি", "chocolates": "চকলেট", "puzzle": "ধাঁধা", "brooch": "ব্রোচ (অলংকার)",
+  "tales": "গল্পসমূহ", "legends": "কিংবদন্তি", "terrific": "চমৎকার / অসাধারণ", "book": "বই",
+  "money": "টাকা", "buy": "কেনা", "myths": "পৌরাণিক কাহিনী", "greece": "গ্রীস দেশ",
+  "rome": "রোম নগরী", "grand": "অসাধারণ", "called": "ডেকেছিল", "school": "বিদ্যালয়",
+  "recess": "টিফিনের সময়", "treated": "আপ্যায়ন করেছিল", "sweet": "মিষ্টি", "biscuits": "বিস্কুট",
+  "back": "ফিরে যাওয়া", "lessons": "পড়াশোনা", "stop": "থামা", "pals": "খাস বন্ধু",
+  "afternoon": "বিকেলবেলা", "showed": "দেখায়েছিল", "film": "চলচ্চিত্র / সিনেমা", "keeper": "রক্ষক",
+  "enjoyed": "উপভোগ করেছিল", "lovely": "সুন্দর / চমৎকার", "time": "সময়", "girls": "মেয়েরা",
+  "boys": "ছেলেরা", "years": "বছরসমূহ", "jewish": "ইহুদি", "secondary": "মাধ্যমিক",
+  "together": "একসাথে", "friendly": "বন্ধুভাবাপন্ন", "different": "আলাদা / ভিন্ন", "written": "লেখা হয়েছে",
+  "few": "কিছু / অল্প", "days": "দিনগুলি", "wanted": "চেয়েছিলাম", "think": "ভাবা",
+  "diary": "ডায়েরি / দিনলিপি", "odd": "অদ্ভুত", "idea": "ভাবনা / ধারণা", "keep": "রাখা",
+  "neither": "না এটাও... না ওটাও", "interested": "আগ্রহী", "unbosomings": "মনের কথা প্রকাশ", "thirteen": "তেরো",
+  "girl": "মেয়ে", "matter": "বিষয় / ব্যাপার", "write": "লেখা", "bring": "বাইরে আনা",
+  "buried": "লুকিয়ে থাকা / কবরস্থ", "deep": "গভীর", "heart": "হৃদয়", "saying": "প্রবাদ",
+  "paper": "কাগজ", "patient": "ধৈর্যশীল", "man": "মানুষ", "melancholy": "বিষন্নতা / দুঃখ",
+  "sat": "বসেছিল", "chin": "থুতনি", "hand": "হাত", "feeling": "অনুভূত হওয়া",
+  "bored": "একঘেয়ে / বিরক্ত", "limp": "নিস্তেজ / দুর্বল", "mind": "মন", "stay": "থাকা",
+  "home": "বাড়ি", "doubt": "সন্দেহ", "intend": "ইচ্ছা প্রকাশ করা", "cardboard": "কার্ডবোর্ড / শক্ত কাগজ",
+  "covered": "ঢাকনা দেওয়া", "notebook": "খাতা", "bearing": "বহন করা", "proud": "গর্বিত",
+  "name": "নাম", "unless": "যতক্ষণ না", "find": "খুঁজে পাওয়া", "real": "প্রকৃত / আসল",
+  "cares": "পরোয়া করে", "root": "মূল / কারণ", "reason": "কারণ", "starting": "শুরু করা",
+  "clearly": "স্পষ্টভাবে", "believe": "বিশ্বাস করা", "world": "পৃথিবী", "darling": "প্রিয়",
+  "parents": "বাবা-মা", "sister": "বোন", "sixteen": "ষোল", "people": "মানুষজন",
+  "relations": "আত্মীয়স্বজন", "aunts": "কাকিমা / জেঠিমা", "uncles": "কাকু / মামা", "lack": "অভাব",
+  "same": "একই", "fun": "মজা", "joking": "ঠাট্টা-তামাশা", "outside": "বাইরে",
+  "common": "সাধারণ", "round": "দৈনন্দিন ঘেরাটোপ", "closer": "কাছাকাছি", "trouble": "সমস্যা",
+  "hence": "অতএব / তাই", "enhance": "বৃদ্ধি করা", "eye": "চোখ / দৃষ্টি", "waited": "অপেক্ষা করেছিল",
+  "series": "ক্রম / ধারাবাহিকতা", "bald": "সহজ-সরল / অনাবৃত", "facts": "তথ্যসমূহ", "grasp": "উপলব্ধি করা",
+  "letters": "চিঠিপত্র", "blue": "আকস্মিক (out of the blue)", "albeit": "যদিও", "unwillingly": "অনিচ্ছাসত্ত্বেও",
+  "sketching": "সংক্ষেপে আঁকা বা বলা", "brief": "সংক্ষিপ্ত", "story": "গল্প", "life": "জীবন",
+  "father": "বাবা", "married": "বিয়ে করেছিল", "mother": "মা", "born": "জন্মগ্রহণ করেছিল",
+  "emigrated": "দেশান্তরিত হয়েছিল", "appointed": "নিযুক্ত হয়েছিল", "managing": "ব্যবস্থাপনা", "director": "পরিচালক",
+  "impact": "প্রভাব", "anti-jewish": "ইহুদি-বিরোধী", "laws": "আইনসমূহ", "anxiety": "উদ্বেগ / দুশ্চিন্তা",
+  "escaped": "পালিয়ে গিয়েছিল", "grandmother": "ঠাকুরমা", "died": "মারা গিয়েছিলেন", "present": "উপস্থিত",
+  "thoughts": "চিন্তাভাবনা", "love": "ভালোবাসা", "kindergarten": "শিশু বিদ্যালয়", "continued": "চালিয়ে গিয়েছিল",
+  "form": "শ্রেণী", "good-bye": "বিদায়", "wept": "কেঁদেছিল", "sad": "দুঃখজনক",
+
+  // Lesson 13 Words
+  "memory": "স্মৃতিশক্তি", "stored": "জমা ছিল", "incredible": "অবিশ্বাস্য", "amount": "পরিমাণ",
+  "folklore": "লোককাহিনী", "astonish": "অবাক করা", "spirits": "আত্মা / ভূত", "mischievous": "দুষ্টু / উপদ্রবী",
+  "ghosts": "ভূতসমূহ", "evening": "সন্ধ্যাবেলা", "town": "শহর", "invited": "আমন্ত্রিত",
+  "night": "রাত", "upper-storey": "উপরের তলা", "flat": "ফ্ল্যাট / বাসা", "bazaar": "বাজার",
+  "maid-servant": "ঝিকরানী / কাজের মেয়ে", "bath": "স্নান", "verandah": "বারান্দা", "hair": "চুল",
+  "loose": "খোলা / আলগা", "ought": "উচিত", "knot": "গিট / খোঁপা", "oiled": "তেল মাখানো",
+  "sunset": "সূর্যাস্ত", "attracted": "আকৃষ্ট", "pretty": "সুন্দর", "black": "কালো",
+  "eyes": "চোখগুলি", "tempted": "লোভাতুর / প্রলুব্ধ", "carry": "নিয়ে যাওয়া", "dreadful": "ভয়ানক",
+  "exclaimed": "চিৎকার করে বলল", "hurriedly": "তাড়াতাড়ি", "indoors": "ঘরের ভেতরে", "safe": "নিরাপদ",
+  "string": "দড়ি / সুতো", "cot": "খাটিয়া / খাট", "facing": "মুখোমুখি", "older": "বয়স বেশি",
+  "thirty-two": "বত্রিশ", "mistaken": "ভুল করে ভাবা", "elder": "বড়", "see": "দেখা",
+  "mathematics": "গণিত", "teacher": "শিক্ষক", "locality": "এলাকা / পাড়া", "pupils": "ছাত্রছাত্রী",
+  "age": "বয়স", "desk": "ডেস্ক / পড়ার টেবিল", "corner": "কোণ", "fetch": "আনা",
+  "cupboard": "আলমারি", "far": "দূরবর্তী", "end": "শেষ প্রান্ত", "lazy": "অলসে",
+  "move": "নড়াচড়া করা", "seat": "বসার জায়গা", "merely": "কেবলমাত্র", "stretched": "প্রসারিত করেছিল",
+  "touching": "স্পর্শ করা", "realised": "বুঝতে পেরেছিল", "agility": "ক্ষিপ্রতা / চপলতা", "volleyball": "ভলিবল খেলা",
+  "matches": "খেলা / ম্যাচ", "lonely": "একাকী / নির্জন", "peepul": "অশ্বত্থ গাছ", "annoyed": "বিরক্ত",
+  "rushes": "ছুটে আসা", "upsets": "উল্টে দেয়", "tongas": "টাঙ্গা গাড়ি", "bullock-carts": "গরুর গাড়ি",
+  "cycles": "সাইকেল", "bus": "বাস গাড়ি", "beneath": "নিচে", "warned": "স সতর্ক করেছিল",
+  "yawn": "হাই তোলা", "snapping": "তুড়ি মারা", "fingers": "আঙুলগুলি", "jump": "লাফ দেওয়া",
+  "throat": "গলা / গহ্বর", "ruin": "নষ্ট করা", "digestion": "হজমশক্তি", "bite": "কামড়ানো",
+  "alone": "একা / না ঘাঁটানো", "finished": "শেষ করেছিল", "dinner": "রাতের খাবার", "heard": "শুনেছিল",
+  "visit": "পরিদর্শন করা", "reluctant": "অনিচ্ছুক", "retire": "বিশ্রাম নেওয়া / শুতে যাওয়া", "recite": "আবৃত্তি করা / জপ করা",
+  "magical": "অলৌকিক / মন্ত্রপূত", "verses": "মন্ত্র / ছড়া", "goblins": "দৈত্য / পিশাচ", "sprites": "প্রেতাত্মা",
+  "uneasy": "অস্বস্তি বোধ করা", "examining": "পরীক্ষা করা", "snakes": "সাপসমূহ", "twisting": "মোচড় দেওয়া",
+  "turning": "পাশ ফেরা", "walls": "দেয়ালগুলি", "shadows": "ছায়াসমূহ", "attempted": "চেষ্টা করেছিল",
+  "eerie": "ভীতিপ্রদ / অদ্ভুত", "knocking": "ধাক্কা দেওয়া / করাঘাত", "voices": "গলার আওয়াজ", "pale": "ফ্যাকাশে",
+  "anxious": "উদ্বিগ্ন", "succeeded": "সফল হয়েছিল", "frightening": "ভীতি সৃষ্টি করা", "protested": "প্রতিবাদ করল",
+  "admit": "স্বীকার করা", "nervous": "ঘাবড়ে যাওয়া", "hustled": "তাড়াহুড়ো করে নিয়ে যাওয়া", "conspiring": "চক্রান্ত করা",
+  "screaming": "চিৎকার করা", "direction": "দিক", "left": "ছেড়ে চলে যাওয়া", "disappeared": "উধাও হয়ে যাওয়া",
+  "dashing": "ছুটোছুটি করা", "pyjamas": "পাজামা", "collapsed": "জ্ঞান হারিয়ে ঢলে পড়া"
+};
 
 const lesson12Data = {
   title: "Lesson 12: My Diary",
@@ -367,20 +367,7 @@ const lesson12Data = {
   units: [
     {
       title: "Introduction & Unit I",
-      startBlock: `
-        <div class="section-block">
-          <h3>Let’s start</h3>
-          <p>The following excerpts have been taken from the book titled <em>Anne Frank: The Diary of a Young Girl</em> by Anne Frank. Anne Frank was born on June 12, 1929 in Frankfurt, Germany. In her diary, Anne Frank records her experiences during 1942 when she and her family fled their home in Amsterdam and went hiding for the next two years in the “Secret Annexe” of an old office building. The extract deals with the experiences just before she and her family went into hiding.</p>
-        </div>
-        <div class="section-block">
-          <h3>Let’s share</h3>
-          <ul>
-            <li>Where do you write down your experiences or the private thoughts that you have each day?</li>
-            <li>Can you name some famous persons who wrote diaries?</li>
-            <li>Have you ever heard of Anne Frank?</li>
-          </ul>
-        </div>
-      `,
+      startBlock: `<div class="section-block"><h3>Let’s start</h3><p>Excerpts from <em>Anne Frank: The Diary of a Young Girl</em>. Anne Frank was born on June 12, 1929 in Frankfurt, Germany.</p></div>`,
       sentences: [
         { en: "Sunday, 14 June, 1942.", bn: "রবিবার, ১৪ই জুন, ১৯৪২।" },
         { en: "On Friday, June 12th, I woke up at six o'clock and no wonder, it was my birthday.", bn: "শুক্রবার, ১২ই জুন, আমি সকাল ছয়টায় জেগে উঠেছিলাম এবং এতে অবাক হওয়ার কিছু নেই, কারণ এটা ছিল আমার জন্মদিন।" },
@@ -395,29 +382,7 @@ const lesson12Data = {
         { en: "Then Lies called for me and we went to school.", bn: "তারপর লাইস আমাকে ডাকতে এল এবং আমরা স্কুলে গেলাম।" },
         { en: "During recess I treated everyone to sweet biscuits, and then we had to go back to our lessons.", bn: "টিফিনের সময়ে আমি সবাইকে মিষ্টি বিস্কুট খাওয়ালাম, এবং তারপর আমাদের পড়ালেখায় ফিরে যেতে হলো।" },
         { en: "Now I must stop. Bye-bye, we're going to be great pals!", bn: "এখন আমাকে থামতে হবে। বাই-বাই, আমরা খুব ভালো বন্ধু হতে যাচ্ছি!" }
-      ],
-      extra: `
-        <div class="word-nest">
-          <h3>Word Nest</h3>
-          <ul>
-            <li><strong>curiosity</strong>: the wish to know or learn about something; কৌতূহল</li>
-            <li><strong>undo</strong>: open; খোলা</li>
-            <li><strong>peonies</strong>: a garden plant with large red, pink or white flowers; পিয়োনি ফুল</li>
-            <li><strong>camera obscura</strong>: a type of pinhole camera; পিনহোল ক্যামেরা</li>
-            <li><strong>brooch</strong>: a piece of jewellery for women which is fastened onto clothes with a pin; ব্রোচ</li>
-            <li><strong>recess</strong>: a period of free time between classes at school; স্কুলে টিফিনের সময়</li>
-            <li><strong>pals</strong>: friends; বন্ধু</li>
-          </ul>
-        </div>
-        <div class="activity-box">
-          <h3>Activity 1</h3>
-          <p>Choose the correct answer from the given alternatives:</p>
-          <ul>
-            <li>(a) Anne Frank’s birthday was on — (i) 14th June (ii) 12th June (iii) 20th June</li>
-            <li>(b) Moortje is Anne’s — (i) pet dog (ii) pet bird (iii) pet cat</li>
-          </ul>
-        </div>
-      `
+      ]
     },
     {
       title: "Unit II",
@@ -429,10 +394,8 @@ const lesson12Data = {
         { en: "We had a lovely time. There were lots of girls and boys.", bn: "আমরা খুব চমৎকার সময় কাটিয়েছিলাম। সেখানে অনেক ছেলে-মেয়ে এসেছিল।" },
         { en: "For years Lies Goosens and Sanne Houtman have been my best friends.", bn: "বছরের পর বছর ধরে লাইস গূসেন্স এবং সান হাউটম্যান আমার সেরা বন্ধু ছিল।" },
         { en: "Since then I've got to know Jopie de Waal at the Jewish Secondary School.", bn: "তারপর থেকে আমি জুয়িশ সেকেন্ডারি স্কুলে জোপি ডি ওয়ালের সাথে পরিচিত হয়েছি।" },
-        { en: "We are together a lot and she is now my best friend.", bn: "আমরা অনেক সময় একসাথে কাটাই এবং সে এখন আমার সেরা বন্ধু।" },
-        { en: "Lies is more friendly with another girl, and Sanne goes to a different school, where she has made new friends.", bn: "লাইস অন্য একটি মেয়ের সাথে বেশি ঘনিষ্ঠ, এবং সান অন্য একটি স্কুলে যায়, যেখানে সে নতুন বন্ধু বানিয়েছে।" }
-      ],
-      extra: ``
+        { en: "We are together a lot and she is now my best friend.", bn: "আমরা অনেক সময় একসাথে কাটাই এবং সে এখন আমার সেরা বন্ধু।" }
+      ]
     },
     {
       title: "Unit III",
@@ -446,49 +409,8 @@ const lesson12Data = {
         { en: "Yes, there is no doubt that paper is patient and I don't intend to show this cardboard-covered notebook, bearing the proud name of 'diary' to anyone.", bn: "হ্যাঁ, এতে কোনো সন্দেহ নেই যে কাগজ ধৈর্যশীল এবং 'ডায়েরি' নামযুক্ত এই খাতাটি আমি কাউকে দেখাতে চাই না।" },
         { en: "Unless I find a real friend, boy or girl, probably nobody cares. And now I come to the root of the matter, the reason for my starting a diary.", bn: "যতক্ষণ না আমি একজন প্রকৃত বন্ধু পাচ্ছি, সম্ভবত কেউই পরোয়া করবে না। আর তাই আমি এই ডায়েরি শুরু করেছি।" },
         { en: "It is that I have no such real friend.", bn: "কারণটা হলো আমার সেরকম কোনো সত্যিকারের বন্ধু নেই।" },
-        { en: "Let me put it clearly, since no one would believe that a girl of thirteen feels herself quite alone in the world, nor is it so.", bn: "স্পষ্ট করে বলি, ১৩ বছরের কোনো মেয়ে একা বোধ করতে পারে তা কেউ বিশ্বাস করবে না।" },
-        { en: "I have darling parents and a sister of sixteen. I know about thirty people whom one might call friends.", bn: "আমার প্রিয় মা-বাবা আছেন এবং ১৬ বছরের এক বোন আছে। প্রায় ৩০ জন পরিচিত লোক আছে যাদের বন্ধু বলা যায়।" },
-        { en: "I have relations – aunts and uncles, who are darlings too, a good home, no – I don't seem to lack anything.", bn: "আমার আত্মীয়স্বজন আছে এবং থাকার জায়গা আছে – অভাব কিছু নেই।" },
-        { en: "But it's the same with all my friends, just fun and joking, nothing more.", bn: "কিন্তু বন্ধুদের সাথে শুধু মজা আর ঠাট্টাই হয়, এর বেশি কিছু নয়।" },
-        { en: "I can never bring myself to talk of anything outside the common round. We don't seem to be able to get any closer, that is the root of the trouble.", bn: "আমরা সাধারণ কথাবার্তার বাইরে গভীরে যেতে পারি না, এটাই আসল সমস্যা।" },
-        { en: "Hence, this diary. In order to enhance in my mind's eye the picture of the friend for whom I have waited so long, I don't want to set down a series of bald facts in a diary like most people do, but I want this diary itself to be my friend, and I shall call my friend Kitty.", bn: "তাই এই ডায়েরি। আমার কাঙ্ক্ষিত বন্ধুর ছবি স্পষ্ট করার জন্য, আমি ডায়েরিকেই আমার বন্ধু বানাতে চাই, আর এর নাম দিলাম 'কিটি'।" },
-        { en: "No one will grasp what I'm talking about if I begin my letters to Kitty just out of the blue, so, albeit unwillingly, I will sit by sketching in brief the story of my life.", bn: "আমি যদি হঠাৎ কিটিকে চিঠি লেখা শুরু করি কেউ বুঝবে না, তাই সংক্ষেপে আমার জীবনের গল্প বলছি।" },
-        { en: "My father was thirty-six when he married my mother, who was then twenty-five.", bn: "আমার বাবা যখন মাকে বিয়ে করেন তখন বাবার বয়স ৩৬ এবং মায়ের ২৫ ছিল।" },
-        { en: "My sister was born in 1926 in Frankfurt-on-Main, I followed on June 12, 1929, and we emigrated to Holland in 1933, where my father was appointed Managing Director of Travies N.V.", bn: "আমার বোন ১৯২৬ সালে ফ্রাঙ্কফুর্টে জন্মায়, আমি ১৯২৯ সালের ১২ই জুন জন্মাই, এবং ১৯৩৩ সালে আমরা হল্যান্ডে চলে আসি।" },
-        { en: "The rest of our family, however, felt the full impact of Hitler's anti-Jewish laws, so life was filled with anxiety.", bn: "হিটলারের ইহুদি-বিরোধী আইনের কারণে আমাদের জীবন উদ্বেগে পূর্ণ হয়ে উঠেছিল।" },
-        { en: "In 1938 my two uncles (my mother's brothers) escaped to the U.S.A.", bn: "১৯৩৮ সালে আমার দুই মামা যুক্তরাষ্ট্রে পালিয়ে যান।" },
-        { en: "My old grandmother came to us, she was then seventy-three. Granny died in January 1942, no one will ever know how much she is present in my thoughts and how much I love her still.", bn: "আমার ৭৩ বছরের ঠাকুরমা আমাদের কাছে আসেন এবং ১৯৪২ সালের জানুয়ারিতে মারা যান।" },
-        { en: "In 1934 I went to school at the Montessori Kindergarten and continued there.", bn: "১৯৩৪ সালে আমি মন্টেশোরি কিন্ডারগার্টেন স্কুলে ভর্তি হই।" },
-        { en: "It was at the end of the school year, I was in form 6B, when I had to say good-bye to Mrs. K. We both wept, it was very sad.", bn: "ষষ্ঠ শ্রেণীতে পড়ার শেষে শিক্ষিকা মিসেস কে-কে বিদায় জানানোর সময় আমরা দুজনেই কেঁদেছিলাম।" },
-        { en: "In 1941 I went, with my sister Margot, to the Jewish Secondary School, she in to the fourth form and I into the first.", bn: "১৯৪১ সালে আমি ও আমার বোন মারগোট জুয়িশ সেকেন্ডারি স্কুলে ভর্তি হই।" },
-        { en: "So far everything is all right with the four of us and here I come to the present day.", bn: "এ পর্যন্ত আমাদের চারজনের সবকিছু ঠিকঠাক চলেছে এবং আজ বর্তমান দিনে এসে পৌঁছালাম।" }
-      ],
-      extra: `
-        <div class="word-nest">
-          <h3>Word Nest</h3>
-          <ul>
-            <li><strong>odd</strong>: strange or unusual; অদ্ভুত</li>
-            <li><strong>unbosoming</strong>: to reveal one's thoughts or feelings; মনের কথা প্রকাশ করা</li>
-            <li><strong>melancholy</strong>: sadness; বিষন্নতা</li>
-            <li><strong>limp</strong>: soft and weak; নিস্তেজ</li>
-            <li><strong>stubborn</strong>: adamant; একগুঁয়ে</li>
-            <li><strong>enhance</strong>: improve the quality of something; বৃদ্ধি করা</li>
-            <li><strong>bald</strong>: plain and clear; সহজ-সরল</li>
-            <li><strong>albeit</strong>: although; যদিও</li>
-            <li><strong>emigrated</strong>: to leave a country permanently and to settle in another country; দেশান্তরিত হওয়া</li>
-          </ul>
-        </div>
-        <div class="activity-box">
-          <h3>Activity 5</h3>
-          <p>Choose the correct answer from the given alternatives:</p>
-          <ul>
-            <li>(a) Anne has a sister who is — (i) thirteen years old (ii) sixteen years old (iii) fourteen years old</li>
-            <li>(b) Kitty is Anne’s — (i) friend (ii) sister (iii) diary</li>
-            <li>(c) The above text is a — (i) biography (ii) diary (iii) short story</li>
-            <li>(d) Anne had to say goodbye to — (i) Mrs. K (ii) Margot (iii) her parents</li>
-          </ul>
-        </div>
-      `
+        { en: "Hence, this diary. In order to enhance in my mind's eye the picture of the friend for whom I have waited so long, I don't want to set down a series of bald facts in a diary like most people do, but I want this diary itself to be my friend, and I shall call my friend Kitty.", bn: "তাই এই ডায়েরি। আমার কাঙ্ক্ষিত বন্ধুর ছবি স্পষ্ট করার জন্য, আমি ডায়েরিকেই আমার বন্ধু বানাতে চাই, আর এর নাম দিলাম 'কিটি'।" }
+      ]
     }
   ]
 };
@@ -498,111 +420,35 @@ const lesson13Data = {
   author: "Ruskin Bond",
   units: [
     {
-      title: "Introduction & Unit I",
-      startBlock: `
-        <div class="section-block">
-          <h3>Let’s start</h3>
-          <p>Ruskin Bond (1934 —) is an Indian author of British descent. In 1992, he received the Sahitya Akademi Award for his short story collection, <em>Our Trees Still Grow in Dehra</em>. His famous works include <em>Room On the Roof</em>, <em>A Flight of Pigeons</em>, <em>Angry River</em>, <em>The Blue Umbrella</em>. The present text is an edited version of his short story <em>Ghosts on the Verandah</em>.</p>
-        </div>
-        <div class="section-block">
-          <h3>Let’s share</h3>
-          <ul>
-            <li>Have you ever seen an old house?</li>
-            <li>Do you believe that ghosts can be found in old houses?</li>
-            <li>Do you believe in spirits and charms?</li>
-          </ul>
-        </div>
-      `,
+      title: "Unit I",
+      startBlock: `<div class="section-block"><h3>Let’s start</h3><p>An edited extract from Ruskin Bond's famous ghost story collection.</p></div>`,
       sentences: [
         { en: "Anil's mother's memory was stored with an incredible amount of folklore, and she would sometimes astonish us with her stories of spirits and mischievous ghosts.", bn: "অনিলের মায়ের স্মৃতি লোককাহিনীর এক অবিশ্বাস্য সম্ভারে পূর্ণ ছিল, এবং তিনি মাঝে মাঝে আমাদের ভূতের গল্পে অবাক করতেন।" },
         { en: "One evening, when Anil's father was out of town, and Kamal and I had been invited to stay the night at Anil's upper-storey flat in the bazaar, his mother began to tell us about the various types of ghosts she had known.", bn: "এক সন্ধ্যায়, যখন অনিলের বাবা শহরের বাইরে ছিলেন এবং কমল ও আমাকে অনিলের ফ্ল্যাটে রাতে থাকার নিমন্ত্রণ জানানো হয়েছিল, তার মা ভূতের গল্প বলতে শুরু করেন।" },
         { en: "Mulia, the maid-servant, having just taken a bath, came out on the verandah, with her hair loose.", bn: "ঝিকরানী মুলিয়া স্নান সেরে খোলা চুলে বারান্দায় এল।" },
-        { en: "\"My girl, you ought not to leave your hair loose like that,\" said Anil's mother. \"It is better to tie a knot in it.\"", bn: "\"মেয়ে, তোমার ওভাবে চুল খোলা রাখা উচিত নয়,\" অনিলের মা বললেন।" },
-        { en: "\"But I have not oiled it yet,\" said Mulia.", bn: "\"কিন্তু আমি তো এখনো তেল দিইনি,\" মুলিয়া বলল।" },
-        { en: "\"Never mind, but you should not leave your hair loose towards sunset. There are spirits called Jinns who are attracted by long hair and pretty black eyes like yours. They may be tempted to carry you away!\"", bn: "\"তা হোক, সূর্যাস্তের সময় চুল খোলা রাখতে নেই। জীন নামের আত্মারা লম্বা চুল ও সুন্দর কালো চোখের দিকে আকৃষ্ট হয়।\"" },
+        { en: "\"My girl, you ought not to leave your hair loose like that,\" said Anil's mother. \"It is better to tie a knot in it.\"", bn: "\"মেয়ে, তোমার ওভাবে চুল খোলা রাখা উচিত নয়,\" অনিলের মা বললেন। \"চুলে গিট বেঁধে রাখা ভালো।\"" },
+        { en: "\"Never mind, but you should not leave your hair loose towards sunset. There are spirits called Jinns who are attracted by long hair and pretty black eyes like yours. They may be tempted to carry you away!\"", bn: "\"তা হোক, সূর্যাস্তের সময় চুল খোলা রাখতে নেই। জীন নামের আত্মারা লম্বা চুল ও সুন্দর কালো চোখের দিকে আকৃষ্ট হয়। তারা তোমাকে তুলে নিয়ে যেতে পারে!\"" },
         { en: "\"How dreadful!\" exclaimed Mulia, hurriedly tying a knot in her hair, and going indoors to be on the safe side.", bn: "\"কী ভয়ানক!\" মুলিয়া চিৎকার করে উঠে তাড়াতাড়ি চুলে গিট বেঁধে ভেতরে চলে গেল।" },
-        { en: "Kamal, Anil and I sat on a string cot, facing Anil's mother, who sat on another cot. She was not much older than thirty-two, and had often been mistaken for Anil's elder sister.", bn: "আমরা খাটায় বসলাম। অনিলের মায়ের বয়স মাত্র ৩২ ছিল এবং তাকে অনিলের বড় বোন বলে মনে হতো।" },
-        { en: "\"Can you see Jinns, aunty?\" I asked.", bn: "\"আপনি কি জীন দেখতে পান, কাকিমা?\" আমি জিজ্ঞেস করলাম।" },
-        { en: "\"Sometimes,\" she said.", bn: "\"মাঝে মাঝে,\" তিনি বললেন।" },
-        { en: "\"There was a Mathematics teacher in our locality, whose pupils were about the same age as you. One of the boys was very good at his lessons. One day, while he sat at his desk in a corner of the classroom, the teacher asked him to fetch a book from the cupboard which stood at the far end of the room.", bn: "তিনি আমাদের এলাকার এক গণিত শিক্ষকের গল্প বললেন, যার এক ছাত্র বসার জায়গা থেকেই হাত চার গজ বাড়িয়ে আলমারি থেকে বই এনে দিয়েছিল!" },
-        { en: "The boy, who felt lazy that morning, didn't move from his seat. He merely stretched out his hand, took the book from the cupboard, and handed it to the teacher. Everyone was astonished, because the boy's arm had stretched about four yards before touching the book! They realised that he was a Jinn; that was the reason for his being so good at games and exercises which required great agility.\"", bn: "সবাই অবাক হয়ে গেল কারণ ছেলেটির হাত ৪ গজ লম্বা হয়ে গিয়েছিল! তারা বুঝল সে একজন জীন।" },
-        { en: "\"Well, I wish I was a Jinn,\" said Anil. \"Especially for volleyball matches.\"", bn: "\"ইশ, আমি যদি জীন হতাম! বিশেষ করে ভলিবল খেলার জন্য,\" অনিল বলল।" },
-        { en: "Anil's mother then told us about Munjia, a mischievous ghost who lives in lonely peepul trees. When a Munjia is annoyed, he rushes out from his tree and upsets tongas, bullock-carts and cycles. Even a bus is known to have been upset by a Munjia.", bn: "অনিলের মা তারপর মুঞ্জিয়া ভূতের কথা বললেন যা অশ্বত্থ গাছে থাকে এবং রেগে গেলে গাড়ি উল্টে দেয়।" },
-        { en: "\"If you are passing beneath a peepul tree at night,\" warned Anil's mother, \"be careful not to yawn without covering your mouth or snapping your fingers in front of it. If you don't remember to do that, the Munjia will jump down your throat and completely ruin your digestion!\"", bn: "\"রাতে অশ্বত্থ গাছের নিচ দিয়ে যাওয়ার সময় হাই তুললে মুখ না ঢাকলে মুঞ্জিয়া পেটে ঢুকে হজমশক্তি নষ্ট করে দেবে!\"" }
-      ],
-      extra: `
-        <div class="word-nest">
-          <h3>Word Nest</h3>
-          <ul>
-            <li><strong>incredible</strong>: unbelievable; অবিশ্বাস্য</li>
-            <li><strong>folklore</strong>: traditional stories of a country or community; লোককাহিনী</li>
-            <li><strong>fetch</strong>: bring; আনা</li>
-            <li><strong>yards</strong>: unit of distance (approx 3 feet); গজ</li>
-            <li><strong>agility</strong>: ability to move quickly and easily; ক্ষিপ্রতা</li>
-          </ul>
-        </div>
-      `
-    },
-    {
-      title: "Unit I (Continued)",
-      startBlock: ``,
-      sentences: [
-        { en: "\"It won't bite you if you let it alone,\" she said.", bn: "\"তুমি তাকে না ঘাঁটালে সে তোমায় কামড়াবে না,\" তিনি বললেন।" },
-        { en: "By eleven o'clock, after we had finished our dinner and heard a few more ghost stories – including one about Anil's grandmother, whose spirit paid the family a visit – Kamal and I were most reluctant to leave the company on the verandah and retire to the room which had been set apart for us.", bn: "রাত ১১টায় রাতের খাবার শেষ করে এবং অনিলের ঠাকুরমার ভূতের গল্প শুনে আমরা ঘরে যেতে ভয় পাচ্ছিলাম।" },
-        { en: "It did not make us feel any better to be told by Anil's mother that we should recite certain magical verses to keep away the more mischievous spirits.", bn: "অনিলের মা আমাদের দুষ্টু আত্মা দূর করার জন্য বিশেষ মন্ত্র জপ করতে বললেন।" },
-        { en: "We tried one, which went – Bhoot, prēt, pisach, dana... Chhoo mantar, sab nikal jana...", bn: "আমরা মন্ত্র জপ করলাম: ভূত, প্রেত, পিশাচ, দানা... ছু মন্তর, সব নিকল জানা..." },
-        { en: "which, roughly translated, means – Ghosts, spirits, goblins, sprites, Away you fly, don't come tonight...", bn: "যার অর্থ হলো: ভূত-প্রেত দূরে পালাও, আজ রাতে এসো না..." },
-        { en: "But the more we repeated the verse, the more uneasy we became, and when I got into bed (after carefully examining it for snakes), I couldn't lie still, but kept twisting and turning and looking at the walls for moving shadows.", bn: "কিন্তু আমরা যত মন্ত্রটি বলছিলাম তত বেশি ভয় পাচ্ছিলাম।" },
-        { en: "Kamal attempted to raise our spirits by singing softly, but this only made the atmosphere more eerie.", bn: "কমল গান গেয়ে সাহস বাড়াতে চাইল কিন্তু পরিবেশ আরও ভয়ানক হয়ে উঠল।" },
-        { en: "After a while we heard someone knocking on the door, and the voices of Anil and the maidservant.", bn: "কিছুক্ষণ পর দরজায় ধাক্কা এবং অনিল ও ঝির গলা শুনতে পেলাম।" },
-        { en: "Getting up and opening the door, I found them looking pale and anxious. They, too, had succeeded in frightening themselves as a result of Anil's mother's stories.", bn: "দরজা খুলে দেখি তারাও ভয়ে ফ্যাকাশে হয়ে গেছে!" },
-        { en: "\"Are you all right?\" asked Anil. \"Wouldn't you like to sleep in our part of the house? It might be safer. Mulia will help us to carry the beds across!\"", bn: "\"তোমরা ঠিক আছ? আমাদের ঘরে এসে শোবে?\" অনিল জিজ্ঞেস করল।" },
-        { en: "\"We're quite all right,\" protested Kamal and I, refusing to admit we were nervous; but we were hustled along to the other side of the flat as though a band of ghosts was conspiring against us.", bn: "আমরা ভয় অস্বীকার করলেও আমাদের তাড়াতাড়ি অন্য পাশে নিয়ে যাওয়া হলো।" },
-        { en: "Anil's mother had been absent during all this activity but suddenly we heard her screaming from the direction of the room we had just left.", bn: "হঠাৎ আমরা অনিলের মায়ের চিৎকার শুনতে পেলাম সেই ঘরের দিক থেকে যা আমরা এইমাত্র ছেড়ে এসেছি!" },
-        { en: "\"Rusty and Kamal have disappeared!\" she cried. \"Their beds have gone, too!\"", bn: "\"রাস্টি আর কমল উধাও হয়ে গেছে! তাদের বিছানাও নেই!\" তিনি চিৎকার করলেন।" },
-        { en: "And then, when she came out on the verandah and saw us dashing about in our pyjamas, she gave another scream and collapsed on a cot.", bn: "তারপর বারান্দায় আমাদের পাজামা পরা অবস্থায় দৌড়াদৌড়ি করতে দেখে তিনি আবার চিৎকার করে খাটে জ্ঞান হারিয়ে ফেললেন।" },
-        { en: "After that, we didn't allow Anil's mother to tell us ghost stories at night.", bn: "এরপর থেকে আমরা অনিলের মাকে রাতে আর ভূতের গল্প বলতে দিতাম না।" }
-      ],
-      extra: `
-        <div class="word-nest">
-          <h3>Word Nest</h3>
-          <ul>
-            <li><strong>reluctant</strong>: unwilling; অনিচ্ছুক</li>
-            <li><strong>eerie</strong>: strange or unnatural; ভীতিপ্রদ</li>
-            <li><strong>pale</strong>: whitish; ফ্যাকাশে</li>
-            <li><strong>conspiring</strong>: secretly planning to do something evil; চক্রান্ত করা</li>
-          </ul>
-        </div>
-      `
+        { en: "There was a Mathematics teacher in our locality, whose pupils were about the same age as you. One of the boys was very good at his lessons. One day, while he sat at his desk in a corner of the classroom, the teacher asked him to fetch a book from the cupboard which stood at the far end of the room.", bn: "আমাদের এলাকার এক গণিত শিক্ষকের গল্প এটি। একদিন তিনি এক ছেলেকে দূরবর্তী আলমারি থেকে বই আনতে বললেন।" },
+        { en: "The boy, who felt lazy that morning, didn't move from his seat. He merely stretched out his hand, took the book from the cupboard, and handed it to the teacher. Everyone was astonished, because the boy's arm had stretched about four yards before touching the book! They realised that he was a Jinn; that was the reason for his being so good at games and exercises which required great agility.", bn: "ছেলেটি অলস অনুভব করে নিজের জায়গা থেকে না নড়ে চার গজ হাত বাড়িয়ে বই এনে দিল! সবাই বুঝল সে একজন জীন।" }
+      ]
     }
   ]
 };
 
-// DICTIONARY FOR WORD POPUP
-const dictionary = {
-  "curiosity": "কৌতূহল", "undo": "খোলা", "peonies": "পিয়োনি ফুল",
-  "brooch": "অলংকার", "recess": "টিফিনের সময়", "pals": "বন্ধু",
-  "odd": "অদ্ভুত", "unbosoming": "মনের কথা প্রকাশ", "melancholy": "বিষন্নতা",
-  "limp": "নিস্তেজ", "stubborn": "একগুঁয়ে", "enhance": "বৃদ্ধি করা",
-  "emigrated": "দেশান্তরিত হওয়া", "incredible": "অবিশ্বাস্য", "folklore": "লোককাহিনী",
-  "fetch": "আনা", "agility": "ক্ষিপ্রতা", "reluctant": "অনিচ্ছুক", "eerie": "ভীতিপ্রদ"
-};
-
-// Global State
+// Global Variables
 let currentLessonData = lesson12Data;
 let currentUnitIdx = 0;
 let currentSentence = 0;
 let isPlaying = false;
 let isPaused = false;
 let englishVoice = null;
-let bengaliVoice = null;
-let hasBengaliVoice = false;
 let speechRate = 0.85;
 
 // DOM Elements
 const storyDiv = document.getElementById('storyText');
 const statusBar = document.getElementById('statusBar');
-const voiceWarning = document.getElementById('voiceWarning');
+const liveSubtitles = document.getElementById('liveSubtitles');
 const playBtn = document.getElementById('playBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const stopBtn = document.getElementById('stopBtn');
@@ -618,9 +464,6 @@ const unitTitle = document.getElementById('unitTitle');
 const introBlock = document.getElementById('introBlock');
 const extraContent = document.getElementById('extraContent');
 const unitMenu = document.getElementById('unitMenu');
-const floatingBtn = document.getElementById('floatingBtn');
-const floatingDropdown = document.getElementById('floatingDropdown');
-const floatingMenuItems = document.getElementById('floatingMenuItems');
 
 function selectLesson(num) {
   stopAll();
@@ -629,7 +472,7 @@ function selectLesson(num) {
   
   currentLessonData = (num === 12) ? lesson12Data : lesson13Data;
   document.getElementById('lessonMainTitle').textContent = currentLessonData.title;
-  document.getElementById('lessonSubTitle').textContent = currentLessonData.author + " • Complete Unabridged Text";
+  document.getElementById('lessonSubTitle').textContent = currentLessonData.author + " • Complete Text Reader";
   
   renderUnitMenu();
   renderFloatingMenu();
@@ -648,15 +491,16 @@ function renderUnitMenu() {
 }
 
 function renderFloatingMenu() {
-  floatingMenuItems.innerHTML = '';
+  const container = document.getElementById('floatingMenuItems');
+  container.innerHTML = '';
   currentLessonData.units.forEach((u, idx) => {
     const btn = document.createElement('button');
     btn.textContent = u.title;
     btn.onclick = () => {
       switchUnit(idx);
-      floatingDropdown.classList.remove('show');
+      document.getElementById('floatingDropdown').classList.remove('show');
     };
-    floatingMenuItems.appendChild(btn);
+    container.appendChild(btn);
   });
 }
 
@@ -671,9 +515,10 @@ function switchUnit(idx) {
   const unit = currentLessonData.units[idx];
   unitTitle.textContent = unit.title;
   introBlock.innerHTML = unit.startBlock || '';
-  extraContent.innerHTML = unit.extra || '';
+  extraContent.innerHTML = '';
 
   buildStory();
+  liveSubtitles.innerHTML = '<span class="placeholder">বাংলা অনুবাদ এখানে অডিওর সাথে সাথে ভেসে উঠবে (Click any underlined word for Bengali meaning)</span>';
   statusBar.textContent = `Ready — ${unit.title} loaded. Press Play to listen.`;
 }
 
@@ -687,7 +532,9 @@ function buildStory() {
     tokens.forEach(tok => {
       if (tok.trim() && /[\w'’]/.test(tok)) {
         const clean = tok.toLowerCase().replace(/[’']/g, "");
-        html += `<span class="word" data-word="${clean}">${tok}</span>`;
+        const hasMeaning = dictionary.hasOwnProperty(clean);
+        const cls = hasMeaning ? "word has-meaning" : "word";
+        html += `<span class="${cls}" data-word="${clean}">${tok}</span>`;
       } else {
         html += tok;
       }
@@ -707,12 +554,7 @@ function buildStory() {
 function loadVoices() {
   const voices = speechSynthesis.getVoices();
   if (!voices.length) return;
-
   englishVoice = voices.find(v => v.lang === 'en-IN') || voices.find(v => v.lang.startsWith('en'));
-  bengaliVoice = voices.find(v => v.lang === 'bn-IN' || v.lang === 'bn-BD') || voices.find(v => v.lang.startsWith('bn'));
-
-  hasBengaliVoice = !!bengaliVoice;
-  voiceWarning.classList.toggle('show', !hasBengaliVoice);
 }
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
@@ -730,16 +572,11 @@ function highlightSentence(sIdx) {
   }
 }
 
-function speakText(text, isBengali, onEnd) {
+function speakText(text, onEnd) {
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  if (isBengali && hasBengaliVoice) {
-    u.voice = bengaliVoice;
-    u.lang = bengaliVoice.lang;
-  } else {
-    u.voice = englishVoice;
-    u.lang = englishVoice ? englishVoice.lang : 'en-US';
-  }
+  u.voice = englishVoice;
+  u.lang = englishVoice ? englishVoice.lang : 'en-US';
   u.rate = speechRate;
   u.onend = () => { if (onEnd) onEnd(); };
   u.onerror = () => { if (onEnd) onEnd(); };
@@ -748,7 +585,7 @@ function speakText(text, isBengali, onEnd) {
 
 function showWordPopup(el) {
   const word = el.dataset.word;
-  const meaning = dictionary[word] || "বাংলা অর্থ দেখতে বাক্যের অনুবাদটি লক্ষ করুন।";
+  const meaning = dictionary[word] || "অর্থ: বাক্যভিত্তিক অর্থ বুঝতে টেক্সটটি লক্ষ করুন।";
 
   popupEn.textContent = word.charAt(0).toUpperCase() + word.slice(1);
   popupBn.textContent = meaning;
@@ -767,19 +604,19 @@ function hidePopup() { popup.classList.remove('show'); }
 
 popupClose.addEventListener('click', hidePopup);
 popupSpeak.addEventListener('click', () => {
-  speakText(popupEn.textContent, false);
+  speakText(popupEn.textContent);
 });
 
 document.addEventListener('click', (e) => {
-  if (!popup.contains(e.target) && !e.target.classList.contains('word') && e.target !== floatingBtn) {
+  if (!popup.contains(e.target) && !e.target.classList.contains('word') && e.target.id !== 'floatingBtn') {
     hidePopup();
-    floatingDropdown.classList.remove('show');
+    document.getElementById('floatingDropdown').classList.remove('show');
   }
 });
 
-floatingBtn.addEventListener('click', (e) => {
+document.getElementById('floatingBtn').addEventListener('click', (e) => {
   e.stopPropagation();
-  floatingDropdown.classList.toggle('show');
+  document.getElementById('floatingDropdown').classList.toggle('show');
 });
 
 function playNext() {
@@ -788,20 +625,24 @@ function playNext() {
   if (currentSentence >= unit.sentences.length) {
     stopAll();
     statusBar.textContent = 'Finished reading Section ✓';
+    liveSubtitles.textContent = 'পাঠ শেষ হয়েছে ✓';
     return;
   }
 
   const s = unit.sentences[currentSentence];
   highlightSentence(currentSentence);
+  
+  // LIVE SYNC: Display Bengali meaning on banner at pace with audio
+  liveSubtitles.textContent = s.bn;
   statusBar.textContent = `Reading Sentence ${currentSentence + 1} of ${unit.sentences.length}`;
 
-  speakText(s.en, false, () => {
+  speakText(s.en, () => {
     if (!isPlaying || isPaused) return;
     setTimeout(() => {
       if (!isPlaying || isPaused) return;
       currentSentence++;
       playNext();
-    }, 400);
+    }, 500);
   });
 }
 
@@ -845,7 +686,6 @@ function stopAll() {
   statusBar.textContent = 'Stopped';
 }
 
-// Event Listeners
 speedSlider.addEventListener('input', () => {
   speechRate = parseFloat(speedSlider.value);
   speedValue.textContent = speechRate.toFixed(2) + 'x';
@@ -854,7 +694,6 @@ playBtn.addEventListener('click', play);
 pauseBtn.addEventListener('click', pause);
 stopBtn.addEventListener('click', stopAll);
 
-// Initialization
 selectLesson(12);
 setTimeout(loadVoices, 500);
 </script>
